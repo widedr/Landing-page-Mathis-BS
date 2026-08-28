@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+:root {
+  /* Mathis design tokens — extracted from the Figma design system */
+  --mathis-primary: #f97316; /* orange Mathis — CTA, accents, éléments actifs */
+  --mathis-primary-hover: #ea670d;
+  --mathis-primary-active: #d95e0a;
+  --mathis-primary-ink: #c2410c; /* orange assombri — texte/icônes sur fond clair (contraste AA) */
+  --mathis-accent: #ff6100; /* accent tertiaire — liens, mise en avant */
+  --mathis-ink: #1b1b23; /* texte principal — titres, corps de texte */
+  --mathis-slate: #5b6472; /* texte secondaire — légendes, support (assombri pour marge AA) */
+  --mathis-paper: #ffffff; /* fond par défaut */
+  --mathis-surface: #f7f6f9; /* fond conteneur — cartes, blocs alternés */
+  --mathis-border: #efedf1; /* bordure neutre — séparateurs, contours */
+  --mathis-success: #15803d; /* indicateurs positifs (assombri pour contraste AA) */
+  --mathis-success-soft: #eaf6ec;
+  --mathis-warning: #ef6c00; /* badges d'attention */
+  --mathis-warning-soft: #fdf0e3;
+  --mathis-error: #dc2626; /* erreurs de formulaire — distinct du orange CTA */
+
+  --shadow-card: 0 1px 2px rgba(27, 27, 35, 0.04), 0 12px 32px -16px rgba(27, 27, 35, 0.12);
+  --shadow-float: 0 20px 45px -20px rgba(249, 115, 22, 0.35);
+
+  --container-max: 1200px;
+}
+
+@theme inline {
+  --color-primary: var(--mathis-primary);
+  --color-primary-hover: var(--mathis-primary-hover);
+  --color-primary-active: var(--mathis-primary-active);
+  --color-primary-ink: var(--mathis-primary-ink);
+  --color-accent: var(--mathis-accent);
+  --color-ink: var(--mathis-ink);
+  --color-slate: var(--mathis-slate);
+  --color-paper: var(--mathis-paper);
+  --color-surface: var(--mathis-surface);
+  --color-border: var(--mathis-border);
+  --color-success: var(--mathis-success);
+  --color-success-soft: var(--mathis-success-soft);
+  --color-warning: var(--mathis-warning);
+  --color-warning-soft: var(--mathis-warning-soft);
+  --color-error: var(--mathis-error);
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-2xl: 30px;
+  --radius-3xl: 40px;
+  --radius-4xl: 48px;
+  --radius-full: 999px;
+
+  --font-display: var(--font-outfit);
+  --font-sans: var(--font-outfit);
+  --font-ui: var(--font-roboto);
+
+  --animate-reveal: reveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-marquee: marquee 32s linear infinite;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+* {
+  border-color: var(--mathis-border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--mathis-paper);
+  color: var(--mathis-ink);
+  font-family: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--mathis-primary) 22%, transparent);
+  color: var(--mathis-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--mathis-primary-ink);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.balance {
+  text-wrap: balance;
+}
+
+.pretty {
+  text-wrap: pretty;
+}
