@@ -39,7 +39,7 @@ export function Hero() {
             </Button>
           </div>
           <div className="flex items-center gap-2.5">
-            <CircleCheckBig className="size-[18px] shrink-0 text-primary-ink" aria-hidden="true" />
+            <CircleCheckBig className="size-[18px] shrink-0 text-success" aria-hidden="true" />
             <span className="font-ui text-sm text-ink">{hero.trust}</span>
           </div>
         </Reveal>
@@ -121,7 +121,6 @@ export function Hero() {
               </span>
             </motion.div>
           </div>
-          <p className="mt-4 text-center font-ui text-sm text-slate">{hero.visualCaption}</p>
         </Reveal>
       </Container>
     </section>

@@ -9,12 +9,15 @@ import { RadarChart } from "@/components/ui/RadarChart";
 import { cn } from "@/lib/utils";
 import { problem } from "@/lib/content";
 
-// Illustrative maturity levels (0–1), not a real measurement — see radarCaption.
+// Niveaux de maturité illustratifs (0–1) — pas une mesure réelle (cf. radarCaption)
 const BEFORE_LEVEL = [0.25, 0.2, 0.15, 0.2, 0.2];
 const AFTER_LEVEL = [0.95, 0.9, 1, 0.9, 0.95];
 
+type Side = "before" | "after";
+
 export function Problem() {
   const [active, setActive] = useState<number | null>(null);
+  const [side, setSide] = useState<Side>("after");
 
   const axes = problem.rows.map((row, i) => ({
     label: row.axis,
@@ -38,81 +41,152 @@ export function Problem() {
           divider
         />
 
-        <Reveal
-          delay={100}
-          className="flex items-center gap-2 font-ui text-sm text-slate"
-        >
-          <span>De la donnée éparpillée</span>
-          <ArrowRight className="size-4 text-primary-ink" aria-hidden="true" />
-          <span className="font-medium text-ink">à une fiscalité pilotée</span>
+        <Reveal delay={100} className="flex flex-wrap items-center gap-4">
+          <span className="flex items-center gap-2 font-ui text-sm text-slate">
+            De la donnée éparpillée
+            <ArrowRight className="size-4 text-primary-ink" aria-hidden="true" />
+            <span className="font-medium text-ink">à une fiscalité pilotée</span>
+          </span>
+
+          {/* Bascule Avant / Avec — points gris & orange */}
+          <div
+            role="group"
+            aria-label="Basculer entre avant et avec Mathis"
+            className="ml-auto flex items-center border border-border bg-white p-1"
+          >
+            <button
+              type="button"
+              onClick={() => setSide("before")}
+              aria-pressed={side === "before"}
+              className={cn(
+                "flex items-center gap-2 px-4 py-2 font-ui text-sm font-medium transition-colors",
+                side === "before" ? "bg-slate/10 text-ink" : "text-slate hover:text-ink",
+              )}
+            >
+              <span className="size-2.5 rounded-full border border-dashed border-slate" aria-hidden="true" />
+              Avant Mathis
+            </button>
+            <button
+              type="button"
+              onClick={() => setSide("after")}
+              aria-pressed={side === "after"}
+              className={cn(
+                "flex items-center gap-2 px-4 py-2 font-ui text-sm font-medium transition-colors",
+                side === "after" ? "bg-primary/10 text-primary-ink" : "text-slate hover:text-ink",
+              )}
+            >
+              <span className="size-2.5 rounded-full bg-primary" aria-hidden="true" />
+              Avec Mathis
+            </button>
+          </div>
         </Reveal>
 
-        <div className="grid gap-10 lg:grid-cols-[380px_1fr] lg:items-center">
-          <Reveal
-            delay={150}
-            className="flex flex-col items-center gap-3 rounded-none border border-border bg-surface/50 p-8"
-          >
-            <RadarChart axes={axes} activeIndex={active} onActiveChange={setActive} />
-            <p className="max-w-[280px] text-center font-ui text-xs text-slate">
+        <Reveal
+          delay={150}
+          className="grid items-center gap-8 lg:grid-cols-[1fr_360px_1fr] lg:gap-6"
+        >
+          {/* Avant Mathis — à gauche */}
+          <ComparisonColumn
+            heading={problem.columns.before}
+            tone="before"
+            active={side === "before"}
+            rows={problem.rows.map((r) => r.before)}
+            activeIndex={active}
+            onActiveChange={setActive}
+          />
+
+          {/* Schéma au milieu */}
+          <div className="order-first flex flex-col items-center gap-4 lg:order-none">
+            <RadarChart
+              axes={axes}
+              activeIndex={active}
+              onActiveChange={setActive}
+              emphasis={side}
+            />
+            <p className="max-w-[300px] text-center font-ui text-xs text-slate">
               {problem.radarCaption}
             </p>
-          </Reveal>
+          </div>
 
-          <Reveal
-            delay={200}
-            className="overflow-hidden rounded-none border border-border shadow-[0_1px_2px_rgba(27,27,35,0.04)]"
-          >
-            <div className="hidden grid-cols-2 md:grid">
-              <div className="border-r border-border bg-surface px-8 py-5">
-                <span className="font-display text-lg font-bold text-slate">
-                  {problem.columns.before}
-                </span>
-              </div>
-              <div className="bg-primary/[0.06] px-8 py-5">
-                <span className="font-display text-lg font-bold text-primary-ink">
-                  {problem.columns.after}
-                </span>
-              </div>
-            </div>
-
-            {problem.rows.map((row, i) => {
-              const isActive = active === i;
-              return (
-                <button
-                  key={row.before}
-                  type="button"
-                  onClick={() => setActive(isActive ? null : i)}
-                  onMouseEnter={() => setActive(i)}
-                  onMouseLeave={() => setActive(null)}
-                  className={cn(
-                    "grid w-full grid-cols-1 border-t border-border text-left transition-colors md:grid-cols-2",
-                    isActive && "bg-primary/[0.04]",
-                  )}
-                >
-                  <div className="flex items-start gap-3 border-b border-border bg-white px-6 py-5 md:border-r md:border-b-0 md:px-8">
-                    <X className="mt-0.5 size-5 shrink-0 text-slate/60 md:hidden" aria-hidden="true" />
-                    <span className="text-[15px] leading-snug text-slate">{row.before}</span>
-                  </div>
-                  <div
-                    className={cn(
-                      "flex items-start gap-3 px-6 py-5 transition-colors md:px-8",
-                      isActive ? "bg-primary/[0.07]" : "bg-primary/[0.03]",
-                    )}
-                  >
-                    <CircleCheckBig
-                      className="mt-0.5 size-5 shrink-0 text-primary md:hidden"
-                      aria-hidden="true"
-                    />
-                    <span className="text-[15px] leading-snug font-medium text-ink">
-                      {row.after}
-                    </span>
-                  </div>
-                </button>
-              );
-            })}
-          </Reveal>
-        </div>
+          {/* Avec Mathis — à droite */}
+          <ComparisonColumn
+            heading={problem.columns.after}
+            tone="after"
+            active={side === "after"}
+            rows={problem.rows.map((r) => r.after)}
+            activeIndex={active}
+            onActiveChange={setActive}
+          />
+        </Reveal>
       </Container>
     </section>
+  );
+}
+
+function ComparisonColumn({
+  heading,
+  tone,
+  active,
+  rows,
+  activeIndex,
+  onActiveChange,
+}: {
+  heading: string;
+  tone: "before" | "after";
+  active: boolean;
+  rows: string[];
+  activeIndex: number | null;
+  onActiveChange: (i: number | null) => void;
+}) {
+  const isAfter = tone === "after";
+  return (
+    <div
+      className={cn(
+        "flex flex-col border border-border bg-white transition-opacity duration-300",
+        !active && "opacity-60",
+        isAfter && "bg-primary/[0.03]",
+      )}
+    >
+      <div className={cn("border-b border-border px-6 py-4", isAfter && "bg-primary/[0.06]")}>
+        <span
+          className={cn(
+            "font-display text-lg font-bold",
+            isAfter ? "text-primary-ink" : "text-slate",
+          )}
+        >
+          {heading}
+        </span>
+      </div>
+      <ul>
+        {rows.map((text, i) => (
+          <li key={text}>
+            <button
+              type="button"
+              onMouseEnter={() => onActiveChange(i)}
+              onMouseLeave={() => onActiveChange(null)}
+              onClick={() => onActiveChange(activeIndex === i ? null : i)}
+              className={cn(
+                "flex w-full items-start gap-3 border-t border-border px-6 py-4 text-left transition-colors first:border-t-0",
+                activeIndex === i && (isAfter ? "bg-primary/[0.06]" : "bg-slate/5"),
+              )}
+            >
+              {isAfter ? (
+                <CircleCheckBig className="mt-0.5 size-5 shrink-0 text-success" aria-hidden="true" />
+              ) : (
+                <X className="mt-0.5 size-5 shrink-0 text-slate/60" aria-hidden="true" />
+              )}
+              <span
+                className={cn(
+                  "text-[15px] leading-snug",
+                  isAfter ? "font-medium text-ink" : "text-slate",
+                )}
+              >
+                {text}
+              </span>
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

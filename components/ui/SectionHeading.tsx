@@ -48,7 +48,7 @@ export function SectionHeading({
       )}
       {divider && (
         <span
-          className="mt-1 h-6 w-[3px] rounded-full bg-gradient-to-b from-primary to-primary/20"
+          className="mt-1 h-[3px] w-[72px] rounded-full bg-gradient-to-r from-primary to-primary/20"
           aria-hidden="true"
         />
       )}

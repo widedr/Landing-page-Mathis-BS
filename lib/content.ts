@@ -184,30 +184,40 @@ export const platform = {
 export const results = {
   eyebrow: "Résultats",
   title: "Des résultats visibles dès les premiers mois",
+  intro:
+    "Dès le déploiement, Mathis transforme votre gestion fiscale étape après étape — de l'automatisation des tâches à une vision partagée du patrimoine.",
   items: [
     {
+      phase: "Semaine 1",
       icon: "wand-sparkles",
       title: "Moins de tâches manuelles",
       detail:
         "La collecte, la saisie et le classement des avis fonciers ne reposent plus sur vos équipes : Mathis les automatise de bout en bout.",
+      highlights: ["Collecte automatisée", "Zéro double saisie"],
     },
     {
+      phase: "Premier mois",
       icon: "database-zap",
       title: "Une meilleure fiabilité des données",
       detail:
-        "Une seule source de données fiscales et patrimoniales, centralisée et à jour, plutôt que des fichiers dispersés à recouper manuellement.",
+        "Une seule source de données fiscales et patrimoniales, centralisée et tenue à jour, plutôt que des fichiers dispersés à recouper manuellement.",
+      highlights: ["Donnée centralisée", "Contrôle qualité continu"],
     },
     {
+      phase: "Premier trimestre",
       icon: "list-checks",
-      title: "Une détection plus rapide des opportunités fiscales",
+      title: "Une détection plus rapide des opportunités",
       detail:
-        "Les dégrèvements potentiels sont identifiés en amont des échéances, au lieu d'être traités au coup par coup.",
+        "Les dégrèvements potentiels sont identifiés en amont des échéances, au lieu d'être traités au coup par coup et souvent trop tard.",
+      highlights: ["Détection avant échéance", "Suivi demandé / obtenu"],
     },
     {
+      phase: "En continu",
       icon: "map-pin-check",
       title: "Une vision consolidée du patrimoine",
       detail:
         "Fiscalité, comptabilité et direction partagent la même vision du patrimoine, pour des arbitrages pris en connaissance de cause.",
+      highlights: ["Tableaux de bord partagés", "Aide à la décision"],
     },
   ],
 };

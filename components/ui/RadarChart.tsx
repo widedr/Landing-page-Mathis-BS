@@ -11,7 +11,7 @@ export type RadarAxis = {
 
 const SIZE = 320;
 const CENTER = SIZE / 2;
-const MAX_RADIUS = 112;
+const MAX_RADIUS = 108;
 const RINGS = [0.25, 0.5, 0.75, 1];
 
 function pointFor(index: number, total: number, value: number) {
@@ -31,11 +31,13 @@ export function RadarChart({
   axes,
   activeIndex,
   onActiveChange,
+  emphasis = "after",
   className,
 }: {
   axes: RadarAxis[];
   activeIndex: number | null;
   onActiveChange: (index: number | null) => void;
+  emphasis?: "before" | "after";
   className?: string;
 }) {
   const reduceMotion = useReducedMotion();
@@ -43,8 +45,11 @@ export function RadarChart({
   const beforePoints = polygonPoints(axes.map((a) => a.before));
   const afterPoints = polygonPoints(axes.map((a) => a.after));
 
+  const beforeActive = emphasis === "before";
+  const afterActive = emphasis === "after";
+
   return (
-    <div className={cn("relative mx-auto w-full max-w-[380px]", className)}>
+    <div className={cn("relative mx-auto w-full max-w-[360px]", className)}>
       <svg
         viewBox={`0 0 ${SIZE} ${SIZE}`}
         className="w-full overflow-visible"
@@ -78,37 +83,56 @@ export function RadarChart({
           );
         })}
 
-        {/* "avant" shape */}
+        {/* "avant" shape — gris */}
         <motion.polygon
           points={beforePoints}
-          fill="rgba(91,100,114,0.12)"
-          stroke="#9aa1ac"
-          strokeWidth={1.5}
+          fill={beforeActive ? "rgba(107,114,128,0.18)" : "rgba(107,114,128,0.08)"}
+          stroke="#6b7280"
+          strokeWidth={beforeActive ? 2 : 1.25}
           strokeDasharray="4 3"
           style={{ transformOrigin: `${CENTER}px ${CENTER}px` }}
           initial={{ scale: reduceMotion ? 1 : 0, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
+          whileInView={{ scale: 1, opacity: beforeActive ? 1 : 0.55 }}
+          animate={{ opacity: beforeActive ? 1 : 0.55 }}
           viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         />
 
-        {/* "avec Mathis" shape */}
+        {/* "avec Mathis" shape — orange */}
         <motion.polygon
           points={afterPoints}
-          fill="rgba(249,115,22,0.16)"
+          fill={afterActive ? "rgba(249,115,22,0.18)" : "rgba(249,115,22,0.07)"}
           stroke="var(--mathis-primary)"
-          strokeWidth={2}
+          strokeWidth={afterActive ? 2.5 : 1.25}
           style={{ transformOrigin: `${CENTER}px ${CENTER}px` }}
           initial={{ scale: reduceMotion ? 1 : 0, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
+          whileInView={{ scale: 1, opacity: afterActive ? 1 : 0.5 }}
+          animate={{ opacity: afterActive ? 1 : 0.5 }}
           viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.6, delay: reduceMotion ? 0 : 0.15, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.5, delay: reduceMotion ? 0 : 0.12, ease: [0.16, 1, 0.3, 1] }}
         />
 
-        {/* interactive vertices + labels */}
+        {/* dots gris (avant) */}
         {axes.map((axis, i) => {
-          const outer = pointFor(i, total, 1.16);
+          const p = pointFor(i, total, axis.before);
+          return (
+            <circle
+              key={`b-${axis.label}`}
+              cx={p.x}
+              cy={p.y}
+              r={beforeActive ? 4.5 : 3}
+              fill={beforeActive ? "#6b7280" : "#ffffff"}
+              stroke="#6b7280"
+              strokeWidth={1.5}
+              aria-hidden="true"
+            />
+          );
+        })}
+
+        {/* dots orange (avec) + labels cliquables */}
+        {axes.map((axis, i) => {
           const dot = pointFor(i, total, axis.after);
+          const outer = pointFor(i, total, 1.18);
           const isActive = activeIndex === i;
 
           let anchor: "start" | "middle" | "end" = "middle";
@@ -120,10 +144,10 @@ export function RadarChart({
               <motion.circle
                 cx={dot.x}
                 cy={dot.y}
-                r={isActive ? 7 : 5}
-                fill="var(--mathis-primary)"
-                stroke="white"
-                strokeWidth={2}
+                r={isActive ? 7 : afterActive ? 5 : 3.5}
+                fill={afterActive || isActive ? "var(--mathis-primary)" : "#ffffff"}
+                stroke="var(--mathis-primary)"
+                strokeWidth={1.75}
                 className="cursor-pointer"
                 onClick={() => onActiveChange(isActive ? null : i)}
                 onMouseEnter={() => onActiveChange(i)}
@@ -140,7 +164,7 @@ export function RadarChart({
                 onMouseEnter={() => onActiveChange(i)}
                 onMouseLeave={() => onActiveChange(null)}
                 className={cn(
-                  "cursor-pointer font-ui text-[10.5px] font-medium uppercase tracking-wide transition-colors",
+                  "cursor-pointer font-ui text-[10.5px] font-medium tracking-wide uppercase transition-colors",
                   isActive ? "fill-primary-ink font-semibold" : "fill-slate",
                 )}
               >
@@ -150,17 +174,6 @@ export function RadarChart({
           );
         })}
       </svg>
-
-      <div className="mt-4 flex items-center justify-center gap-6">
-        <span className="flex items-center gap-2 font-ui text-xs text-slate">
-          <span className="size-2.5 rounded-full border border-dashed border-[#9aa1ac]" aria-hidden="true" />
-          Avant Mathis
-        </span>
-        <span className="flex items-center gap-2 font-ui text-xs font-medium text-ink">
-          <span className="size-2.5 rounded-full bg-primary" aria-hidden="true" />
-          Avec Mathis
-        </span>
-      </div>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { CircleCheckBig, LoaderCircle, ShieldCheck } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { TextField } from "@/components/ui/TextField";
+import { MuiField } from "@/components/ui/MuiField";
 import { Reveal } from "@/components/ui/Reveal";
 import { ctaLabel, hero, finalCta } from "@/lib/content";
 
@@ -56,57 +56,60 @@ export function FinalCta() {
           </Button>
         </Reveal>
 
-        <Reveal
-          delay={120}
-          id="cta-form"
-          className="w-full scroll-mt-24 rounded-none border border-border bg-white p-8 shadow-[0_1px_2px_rgba(27,27,35,0.04),0_24px_48px_-24px_rgba(27,27,35,0.15)] sm:p-10"
-        >
-          {status === "success" ? (
-            <div className="flex flex-col items-center gap-4 py-6 text-center">
-              <div className="flex size-14 items-center justify-center rounded-full bg-success-soft text-success">
-                <CircleCheckBig className="size-7" aria-hidden="true" />
-              </div>
-              <p className="font-display text-xl font-bold text-ink">Merci !</p>
-              <p className="max-w-sm text-[15px] leading-relaxed text-slate">
-                {finalCta.confirmation}
-              </p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
-              <TextField label="Nom" name="name" autoComplete="name" required />
-              <TextField
-                label="Email professionnel"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-              />
-              <TextField label="Organisme" name="organization" autoComplete="organization" required />
-              <TextField label="Téléphone" name="phone" type="tel" autoComplete="tel" />
-
-              {status === "error" && (
-                <p className="text-sm text-error" role="alert">
-                  Une erreur est survenue. Merci de réessayer, ou de nous contacter directement.
+        {/* Carte formulaire avec cadre orange décalé (Figma) */}
+        <Reveal delay={120} id="cta-form" className="relative w-full scroll-mt-24">
+          <span
+            className="pointer-events-none absolute -top-3 -right-3 hidden h-full w-full border-2 border-btn-primary sm:block"
+            aria-hidden="true"
+          />
+          <div className="relative border border-border bg-white p-8 shadow-[0_1px_2px_rgba(27,27,35,0.04),0_24px_48px_-24px_rgba(27,27,35,0.15)] sm:p-10">
+            {status === "success" ? (
+              <div className="flex flex-col items-center gap-4 py-6 text-center">
+                <div className="flex size-14 items-center justify-center rounded-full bg-success-soft text-success">
+                  <CircleCheckBig className="size-7" aria-hidden="true" />
+                </div>
+                <p className="font-display text-xl font-bold text-ink">Merci !</p>
+                <p className="max-w-sm text-[15px] leading-relaxed text-slate">
+                  {finalCta.confirmation}
                 </p>
-              )}
-
-              <Button type="submit" disabled={status === "submitting"} className="w-full">
-                {status === "submitting" ? (
-                  <>
-                    <LoaderCircle className="size-4 animate-spin" aria-hidden="true" />
-                    Envoi en cours…
-                  </>
-                ) : (
-                  ctaLabel
-                )}
-              </Button>
-
-              <div className="flex items-start gap-2.5 text-left">
-                <ShieldCheck className="mt-0.5 size-4 shrink-0 text-slate" aria-hidden="true" />
-                <p className="font-ui text-sm text-slate">{finalCta.reassurance}</p>
               </div>
-            </form>
-          )}
+            ) : (
+              <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-6">
+                <MuiField label="Nom" name="name" autoComplete="name" required />
+                <MuiField
+                  label="Email professionnel"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                />
+                <MuiField label="Organisme" name="organization" autoComplete="organization" required />
+                <MuiField label="Téléphone" name="phone" type="tel" autoComplete="tel" />
+
+                {status === "error" && (
+                  <p className="text-sm text-error" role="alert">
+                    Une erreur est survenue. Merci de réessayer, ou de nous contacter directement.
+                  </p>
+                )}
+
+                <Button type="submit" disabled={status === "submitting"} className="w-fit">
+                  {status === "submitting" ? (
+                    <>
+                      <LoaderCircle className="size-4 animate-spin" aria-hidden="true" />
+                      Envoi en cours…
+                    </>
+                  ) : (
+                    ctaLabel
+                  )}
+                </Button>
+
+                <div className="flex items-start gap-2.5 text-left">
+                  <ShieldCheck className="mt-0.5 size-4 shrink-0 text-slate" aria-hidden="true" />
+                  <p className="font-ui text-sm text-slate">{finalCta.reassurance}</p>
+                </div>
+              </form>
+            )}
+          </div>
         </Reveal>
       </Container>
     </section>

@@ -40,20 +40,20 @@ function ModuleVisual({ id, label }: { id: string; label: string }) {
 
   if (screenshot) {
     return (
-      <div className="relative aspect-[3/2] w-full overflow-hidden rounded-none border border-border shadow-[0_8px_20px_-8px_rgba(27,27,35,0.15)]">
+      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-none border border-border shadow-[0_8px_20px_-8px_rgba(27,27,35,0.15)]">
         <Image
           src={screenshot}
           alt={label}
           fill
-          sizes="(min-width: 1024px) 528px, 100vw"
-          className="object-cover object-[50%_18%]"
+          sizes="(min-width: 1024px) 478px, 100vw"
+          className="object-cover object-left-top"
         />
       </div>
     );
   }
 
   return (
-    <div className="relative flex aspect-[3/2] w-full items-center justify-center overflow-hidden rounded-none border border-border bg-gradient-to-br from-surface to-white">
+    <div className="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-none border border-border bg-gradient-to-br from-surface to-white">
       <div
         className="pointer-events-none absolute -top-10 -right-10 size-40 rounded-full bg-primary/10 blur-2xl"
         aria-hidden="true"
@@ -104,9 +104,9 @@ export function Platform() {
                 aria-controls={`${idBase}-panel-${i}`}
                 onClick={() => setActiveTab(i)}
                 className={cn(
-                  "flex-1 px-3 py-2 font-display text-[15px] font-semibold whitespace-nowrap transition-colors",
+                  "flex h-9 flex-1 items-center justify-center px-3 py-2 font-display text-[15px] whitespace-nowrap transition-colors",
                   activeTab === i
-                    ? "bg-primary-very-soft text-btn-primary"
+                    ? "bg-primary-very-soft font-semibold text-btn-primary shadow-[0px_1px_3px_0px_rgba(16,24,40,0.1),0px_1px_2px_0px_rgba(16,24,40,0.06)]"
                     : "font-medium text-slate hover:text-ink",
                 )}
               >
@@ -120,10 +120,10 @@ export function Platform() {
             id={`${idBase}-panel-${activeTab}`}
             aria-labelledby={`${idBase}-tab-${activeTab}`}
             key={active.id}
-            className="grid animate-reveal items-center gap-12 border border-border bg-white p-14"
+            className="grid animate-reveal grid-cols-2 items-center gap-12 border border-border bg-white p-14"
           >
             <div className="flex flex-col gap-6">
-              <h3 className="font-display text-2xl font-bold text-ink sm:text-3xl">
+              <h3 className="font-display text-[30px] leading-9 font-bold text-ink">
                 {active.title}
               </h3>
               <p className="text-base leading-relaxed text-slate">{active.tagline}</p>
