@@ -24,13 +24,13 @@ function ModuleVisual({ id, label }: { id: string; label: string }) {
   const screenshot = moduleScreenshots[id];
 
   return (
-    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-none border border-border shadow-[0_8px_20px_-8px_rgba(27,27,35,0.15)]">
+    <div className="relative aspect-[533/357] w-full overflow-hidden rounded-none border border-border shadow-[0_8px_20px_-8px_rgba(27,27,35,0.15)]">
       <Image
         src={screenshot}
         alt={label}
         fill
         sizes="(min-width: 1024px) 478px, 100vw"
-        className="object-cover object-top"
+        className="object-cover object-center"
       />
     </div>
   );

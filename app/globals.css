@@ -105,8 +105,13 @@
   }
 }
 
-* {
-  border-color: var(--mathis-border);
+/* Couleur de bordure par défaut (comme Tailwind v3). Placée dans @layer base
+   pour que les utilitaires border-<couleur> (ex. border-primary, border-btn-primary)
+   l'emportent — une règle non-layerisée battrait sinon toute la couche utilities. */
+@layer base {
+  * {
+    border-color: var(--mathis-border);
+  }
 }
 
 html {

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { CircleCheckBig } from "lucide-react";
@@ -7,11 +8,23 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
+import { cn } from "@/lib/utils";
 import { ctaLabel, hero } from "@/lib/content";
 
-const barHeights = [10, 16, 24, 32, 44, 34];
+// Progression du montant dégrevé — mini graphique interactif du Hero.
+const degrevementChart = [
+  { month: "Janv.", value: "1,2 M€", h: 12 },
+  { month: "Févr.", value: "2,1 M€", h: 19 },
+  { month: "Mars", value: "3,4 M€", h: 26 },
+  { month: "Avr.", value: "4,3 M€", h: 32 },
+  { month: "Mai", value: "5,6 M€", h: 39 },
+  { month: "Juin", value: "6,5 M€", h: 44 },
+];
 
 export function Hero() {
+  const [activeBar, setActiveBar] = useState(degrevementChart.length - 1);
+  const activePoint = degrevementChart[activeBar];
+
   return (
     <section id="top" className="relative overflow-hidden">
       <div
@@ -89,21 +102,45 @@ export function Hero() {
               whileHover={{ y: -2 }}
               className="absolute -top-6 right-2 flex flex-col gap-2 rounded-none border border-border bg-white p-3 shadow-[0_16px_32px_-16px_rgba(27,27,35,0.25)] sm:right-4"
             >
-              <div className="flex h-11 items-end gap-1">
-                {barHeights.map((h, i) => (
-                  <motion.span
-                    key={i}
-                    initial={{ height: 0 }}
-                    whileInView={{ height: h }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.5 + i * 0.05, duration: 0.4, ease: "easeOut" }}
-                    className="w-1.5 rounded-none bg-primary"
-                  />
-                ))}
+              <div
+                className="flex items-end gap-1"
+                role="group"
+                aria-label="Montant dégrevé cumulé, mois par mois"
+              >
+                {degrevementChart.map((point, i) => {
+                  const isActive = i === activeBar;
+                  return (
+                    <button
+                      key={point.month}
+                      type="button"
+                      onMouseEnter={() => setActiveBar(i)}
+                      onFocus={() => setActiveBar(i)}
+                      onClick={() => setActiveBar(i)}
+                      aria-pressed={isActive}
+                      aria-label={`${point.month} : ${point.value}`}
+                      className="flex h-11 items-end rounded-none outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+                    >
+                      <motion.span
+                        initial={{ height: 0 }}
+                        whileInView={{ height: point.h }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.5 + i * 0.05, duration: 0.4, ease: "easeOut" }}
+                        className={cn(
+                          "w-2 rounded-none transition-colors",
+                          isActive ? "bg-primary" : "bg-primary/35",
+                        )}
+                      />
+                    </button>
+                  );
+                })}
               </div>
               <div>
-                <p className="font-ui text-[10px] text-slate">Montant dégrevé</p>
-                <p className="font-display text-xs font-semibold text-ink">6,5 M€</p>
+                <p className="font-ui text-[10px] text-slate">
+                  Montant dégrevé · {activePoint.month}
+                </p>
+                <p className="font-display text-xs font-semibold text-ink">
+                  {activePoint.value}
+                </p>
               </div>
             </motion.div>
 
