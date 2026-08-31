@@ -36,13 +36,13 @@ type ButtonProps = ButtonOwnProps &
 const base =
   "inline-flex shrink-0 items-center justify-center gap-2 rounded-full font-ui font-medium transition-colors duration-200 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-ink disabled:pointer-events-none disabled:opacity-50";
 
+// Solid variants match the exact Figma button colors (confirmed with the
+// designer): amber primary / violet secondary, both with white text.
 const variants = {
-  // Dark text on the brand orange keeps the exact Mathis CTA color while
-  // reaching a ~6:1 contrast ratio (white-on-orange only reaches ~2.8:1).
   primary:
-    "bg-primary text-ink shadow-[0_12px_24px_-10px_rgba(249,115,22,0.55)] hover:bg-primary-hover hover:shadow-[0_16px_28px_-8px_rgba(249,115,22,0.6)] active:bg-primary-active",
+    "bg-btn-primary text-white uppercase tracking-[0.4px] shadow-[0_12px_24px_-10px_rgba(255,111,0,0.55)] hover:bg-btn-primary-hover hover:shadow-[0_16px_28px_-8px_rgba(255,111,0,0.6)] active:bg-btn-primary-active",
   secondary:
-    "border border-border bg-white text-ink hover:border-ink/20 hover:bg-surface",
+    "bg-btn-secondary text-white uppercase tracking-[0.4px] shadow-[0_12px_24px_-10px_rgba(91,63,214,0.45)] hover:bg-btn-secondary-hover hover:shadow-[0_16px_28px_-8px_rgba(91,63,214,0.5)] active:bg-btn-secondary-active",
   ghost: "text-ink hover:text-primary-ink",
 };
 
