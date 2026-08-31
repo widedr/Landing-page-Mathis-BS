@@ -34,7 +34,7 @@ type ButtonProps = ButtonOwnProps &
   >;
 
 const base =
-  "inline-flex shrink-0 items-center justify-center gap-2 rounded-full font-ui font-medium transition-colors duration-200 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-ink disabled:pointer-events-none disabled:opacity-50";
+  "inline-flex shrink-0 items-center justify-center gap-2 rounded-none font-ui font-medium transition-colors duration-200 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-ink disabled:pointer-events-none disabled:opacity-50";
 
 // Solid variants match the exact Figma button colors (confirmed with the
 // designer): amber primary / violet secondary, both with white text.

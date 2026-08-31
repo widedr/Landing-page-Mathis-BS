@@ -12,7 +12,7 @@ export function Eyebrow({
   return (
     <div
       className={cn(
-        "inline-flex items-center gap-2 rounded-full border border-primary-soft bg-primary-very-soft px-4 py-1.5",
+        "inline-flex items-center gap-2 rounded-none border border-primary-soft bg-primary-very-soft px-4 py-1.5",
         align === "center" && "mx-auto",
         className,
       )}

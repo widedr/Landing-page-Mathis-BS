@@ -50,7 +50,7 @@ export function Results() {
                     type="button"
                     onClick={() => setActive(i)}
                     aria-pressed={isActive}
-                    className="group flex w-full cursor-pointer flex-col items-center gap-4 rounded-2xl p-3 text-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-ink"
+                    className="group flex w-full cursor-pointer flex-col items-center gap-4 rounded-none p-3 text-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-ink"
                   >
                     <motion.span
                       whileHover={{ scale: 1.08 }}
@@ -80,7 +80,7 @@ export function Results() {
         </div>
 
         <Reveal delay={300} className="mx-auto w-full max-w-2xl">
-          <div className="relative overflow-hidden rounded-2xl border border-primary-soft bg-white px-8 py-6 text-center shadow-[0_1px_2px_rgba(27,27,35,0.04)]">
+          <div className="relative overflow-hidden rounded-none border border-primary-soft bg-white px-8 py-6 text-center shadow-[0_1px_2px_rgba(27,27,35,0.04)]">
             <AnimatePresence mode="wait">
               <motion.p
                 key={active}

@@ -1,7 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { CircleCheckBig, MapPin } from "lucide-react";
+import { CircleCheckBig } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -44,27 +45,16 @@ export function Hero() {
         </Reveal>
 
         <Reveal delay={150} className="relative mx-auto w-full max-w-[560px]">
-          <div className="relative mb-8 rounded-3xl bg-white p-4 shadow-[0_30px_70px_-30px_rgba(27,27,35,0.28)] ring-1 ring-ink/5 sm:mb-10">
-            <div className="relative h-[260px] overflow-hidden rounded-2xl bg-gradient-to-br from-surface to-[#efeaf7]">
-              <svg
-                className="absolute inset-0 h-full w-full opacity-40"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <defs>
-                  <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
-                    <path d="M 28 0 L 0 0 0 28" fill="none" stroke="var(--mathis-border)" strokeWidth="1" />
-                  </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#grid)" />
-              </svg>
-              <div className="absolute top-[104px] left-1/2 -translate-x-1/2">
-                <div className="flex size-13 items-center justify-center rounded-full bg-primary/15">
-                  <div className="flex size-9 items-center justify-center rounded-full bg-primary text-white shadow-[0_8px_20px_-6px_rgba(249,115,22,0.7)]">
-                    <MapPin className="size-[18px]" strokeWidth={2.5} />
-                  </div>
-                </div>
-              </div>
+          <div className="relative mb-8 rounded-none bg-white p-4 shadow-[0_30px_70px_-30px_rgba(27,27,35,0.28)] ring-1 ring-ink/5 sm:mb-10">
+            <div className="relative h-[260px] overflow-hidden rounded-none border border-border">
+              <Image
+                src="/screenshots/patrimoine.jpg"
+                alt="Aperçu du module Patrimoine de Mathis : carte du patrimoine et indicateurs fiscaux"
+                fill
+                priority
+                sizes="(min-width: 1024px) 528px, 100vw"
+                className="object-cover object-[36%_55%]"
+              />
             </div>
             <div className="grid grid-cols-3 gap-4 px-2 py-5">
               {hero.kpis.map((kpi) => (
@@ -83,7 +73,7 @@ export function Hero() {
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.5 }}
               whileHover={{ y: -2 }}
-              className="absolute top-9 -left-7 flex items-center gap-2.5 rounded-2xl border border-border bg-white px-4 py-2.5 shadow-[0_16px_32px_-16px_rgba(27,27,35,0.25)] sm:-left-9"
+              className="absolute top-9 -left-7 flex items-center gap-2.5 rounded-none border border-border bg-white px-4 py-2.5 shadow-[0_16px_32px_-16px_rgba(27,27,35,0.25)] sm:-left-9"
             >
               <CircleCheckBig className="size-5 shrink-0 text-success" aria-hidden="true" />
               <span className="font-ui text-sm font-medium text-ink whitespace-nowrap">
@@ -97,7 +87,7 @@ export function Hero() {
               viewport={{ once: true }}
               transition={{ delay: 0.45, duration: 0.5 }}
               whileHover={{ y: -2 }}
-              className="absolute -top-6 right-2 flex flex-col gap-2 rounded-2xl border border-border bg-white p-3 shadow-[0_16px_32px_-16px_rgba(27,27,35,0.25)] sm:right-4"
+              className="absolute -top-6 right-2 flex flex-col gap-2 rounded-none border border-border bg-white p-3 shadow-[0_16px_32px_-16px_rgba(27,27,35,0.25)] sm:right-4"
             >
               <div className="flex h-11 items-end gap-1">
                 {barHeights.map((h, i) => (
@@ -107,7 +97,7 @@ export function Hero() {
                     whileInView={{ height: h }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.5 + i * 0.05, duration: 0.4, ease: "easeOut" }}
-                    className="w-1.5 rounded-full bg-primary"
+                    className="w-1.5 rounded-none bg-primary"
                   />
                 ))}
               </div>
@@ -123,7 +113,7 @@ export function Hero() {
               viewport={{ once: true }}
               transition={{ delay: 0.55, duration: 0.5 }}
               whileHover={{ y: -2 }}
-              className="absolute -right-4 -bottom-6 hidden items-center gap-2.5 rounded-2xl border border-border bg-white px-4 py-2.5 shadow-[0_16px_32px_-16px_rgba(27,27,35,0.25)] sm:-right-8 sm:-bottom-8 sm:flex"
+              className="absolute -right-4 -bottom-6 hidden items-center gap-2.5 rounded-none border border-border bg-white px-4 py-2.5 shadow-[0_16px_32px_-16px_rgba(27,27,35,0.25)] sm:-right-8 sm:-bottom-8 sm:flex"
             >
               <CircleCheckBig className="size-5 shrink-0 text-success" aria-hidden="true" />
               <span className="font-ui text-sm font-medium text-ink whitespace-nowrap">

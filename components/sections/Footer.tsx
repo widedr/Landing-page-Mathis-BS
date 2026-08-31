@@ -50,7 +50,7 @@ export function Footer() {
             target="_blank"
             rel="noreferrer noopener"
             aria-label="Mathis sur LinkedIn"
-            className="flex size-9 items-center justify-center rounded-full border border-border text-ink transition-colors hover:border-primary-ink/30 hover:text-primary-ink"
+            className="flex size-9 items-center justify-center rounded-none border border-border text-ink transition-colors hover:border-primary-ink/30 hover:text-primary-ink"
           >
             <svg
               viewBox="0 0 24 24"

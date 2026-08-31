@@ -50,7 +50,7 @@ export function Problem() {
         <div className="grid gap-10 lg:grid-cols-[380px_1fr] lg:items-center">
           <Reveal
             delay={150}
-            className="flex flex-col items-center gap-3 rounded-3xl border border-border bg-surface/50 p-8"
+            className="flex flex-col items-center gap-3 rounded-none border border-border bg-surface/50 p-8"
           >
             <RadarChart axes={axes} activeIndex={active} onActiveChange={setActive} />
             <p className="max-w-[280px] text-center font-ui text-xs text-slate">
@@ -60,7 +60,7 @@ export function Problem() {
 
           <Reveal
             delay={200}
-            className="overflow-hidden rounded-3xl border border-border shadow-[0_1px_2px_rgba(27,27,35,0.04)]"
+            className="overflow-hidden rounded-none border border-border shadow-[0_1px_2px_rgba(27,27,35,0.04)]"
           >
             <div className="hidden grid-cols-2 md:grid">
               <div className="border-r border-border bg-surface px-8 py-5">

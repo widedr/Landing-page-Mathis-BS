@@ -67,7 +67,7 @@ export function Header() {
           </Button>
           <button
             type="button"
-            className="inline-flex size-10 items-center justify-center rounded-full text-ink lg:hidden"
+            className="inline-flex size-10 items-center justify-center rounded-none text-ink lg:hidden"
             aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((v) => !v)}
@@ -85,7 +85,7 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setMenuOpen(false)}
-                className="rounded-lg px-3 py-3 font-ui text-base text-ink hover:bg-surface"
+                className="rounded-none px-3 py-3 font-ui text-base text-ink hover:bg-surface"
               >
                 {item.label}
               </a>

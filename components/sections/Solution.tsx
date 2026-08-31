@@ -44,7 +44,7 @@ export function Solution() {
                 key={pillar.number}
                 delay={200 + i * 80}
                 hoverLift
-                className="group flex cursor-default flex-col gap-5 rounded-3xl border border-border bg-white p-7 transition-shadow duration-300 hover:shadow-[0_20px_40px_-24px_rgba(27,27,35,0.2)]"
+                className="group flex cursor-default flex-col gap-5 rounded-none border border-border bg-white p-7 transition-shadow duration-300 hover:shadow-[0_20px_40px_-24px_rgba(27,27,35,0.2)]"
               >
                 <div className="flex size-14 items-center justify-center rounded-[30px] bg-secondary-very-light text-secondary transition-transform duration-300 group-hover:scale-110">
                   <Icon className="size-6" strokeWidth={2} aria-hidden="true" />

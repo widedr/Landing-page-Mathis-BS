@@ -59,7 +59,7 @@ export function FinalCta() {
         <Reveal
           delay={120}
           id="cta-form"
-          className="w-full scroll-mt-24 rounded-3xl border border-border bg-white p-8 shadow-[0_1px_2px_rgba(27,27,35,0.04),0_24px_48px_-24px_rgba(27,27,35,0.15)] sm:p-10"
+          className="w-full scroll-mt-24 rounded-none border border-border bg-white p-8 shadow-[0_1px_2px_rgba(27,27,35,0.04),0_24px_48px_-24px_rgba(27,27,35,0.15)] sm:p-10"
         >
           {status === "success" ? (
             <div className="flex flex-col items-center gap-4 py-6 text-center">

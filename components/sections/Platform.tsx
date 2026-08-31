@@ -40,7 +40,7 @@ function ModuleVisual({ id, label }: { id: string; label: string }) {
 
   if (screenshot) {
     return (
-      <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl border border-border shadow-[0_8px_20px_-8px_rgba(27,27,35,0.15)]">
+      <div className="relative aspect-[3/2] w-full overflow-hidden rounded-none border border-border shadow-[0_8px_20px_-8px_rgba(27,27,35,0.15)]">
         <Image
           src={screenshot}
           alt={label}
@@ -53,13 +53,13 @@ function ModuleVisual({ id, label }: { id: string; label: string }) {
   }
 
   return (
-    <div className="relative flex aspect-[3/2] w-full items-center justify-center overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-surface to-white">
+    <div className="relative flex aspect-[3/2] w-full items-center justify-center overflow-hidden rounded-none border border-border bg-gradient-to-br from-surface to-white">
       <div
         className="pointer-events-none absolute -top-10 -right-10 size-40 rounded-full bg-primary/10 blur-2xl"
         aria-hidden="true"
       />
       <div className="flex flex-col items-center gap-3 px-6 text-center">
-        <div className="flex size-14 items-center justify-center rounded-2xl bg-white text-primary-ink shadow-[0_8px_20px_-8px_rgba(27,27,35,0.15)]">
+        <div className="flex size-14 items-center justify-center rounded-none bg-white text-primary-ink shadow-[0_8px_20px_-8px_rgba(27,27,35,0.15)]">
           <Icon className="size-6" aria-hidden="true" />
         </div>
         <span className="font-ui text-sm text-slate">{label}</span>
