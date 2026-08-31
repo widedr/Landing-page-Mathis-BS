@@ -38,26 +38,33 @@ export const problem = {
   columns: { before: "Avant Mathis", after: "Avec Mathis" },
   rows: [
     {
+      axis: "Centralisation",
       before: "Avis fonciers dispersés dans des dizaines de fichiers Excel",
       after: "Une donnée fiscale et patrimoniale centralisée",
     },
     {
+      axis: "Automatisation",
       before: "Données difficiles à fiabiliser et à croiser",
       after: "Des processus automatisés, de la collecte à la déclaration",
     },
     {
+      axis: "Détection",
       before: "Dégrèvements traités au coup par coup, souvent trop tard",
       after: "Des opportunités de dégrèvement détectées avant échéance",
     },
     {
+      axis: "Déclarations",
       before: "Déclarations GMBI, H2, DIS saisies manuellement",
       after: "Des déclarations générées automatiquement",
     },
     {
+      axis: "Pilotage",
       before: "Peu de visibilité consolidée sur le patrimoine fiscal",
       after: "Une fiscalité pilotée, pas subie",
     },
   ],
+  radarCaption:
+    "Comparaison qualitative et illustrative — pas une mesure chiffrée réelle.",
 };
 
 export const solution = {
@@ -179,10 +186,30 @@ export const results = {
   eyebrow: "Résultats",
   title: "Des résultats visibles dès les premiers mois",
   items: [
-    "Moins de tâches manuelles",
-    "Une meilleure fiabilité des données",
-    "Une détection plus rapide des opportunités fiscales",
-    "Une vision consolidée du patrimoine",
+    {
+      icon: "wand-sparkles",
+      title: "Moins de tâches manuelles",
+      detail:
+        "La collecte, la saisie et le classement des avis fonciers ne reposent plus sur vos équipes : Mathis les automatise de bout en bout.",
+    },
+    {
+      icon: "database-zap",
+      title: "Une meilleure fiabilité des données",
+      detail:
+        "Une seule source de données fiscales et patrimoniales, centralisée et à jour, plutôt que des fichiers dispersés à recouper manuellement.",
+    },
+    {
+      icon: "list-checks",
+      title: "Une détection plus rapide des opportunités fiscales",
+      detail:
+        "Les dégrèvements potentiels sont identifiés en amont des échéances, au lieu d'être traités au coup par coup.",
+    },
+    {
+      icon: "map-pin-check",
+      title: "Une vision consolidée du patrimoine",
+      detail:
+        "Fiscalité, comptabilité et direction partagent la même vision du patrimoine, pour des arbitrages pris en connaissance de cause.",
+    },
   ],
 };
 

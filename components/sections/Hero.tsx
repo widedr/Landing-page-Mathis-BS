@@ -1,9 +1,14 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { CircleCheckBig, MapPin } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { ctaLabel, hero } from "@/lib/content";
+
+const barHeights = [10, 16, 24, 32, 44, 34];
 
 export function Hero() {
   return (
@@ -39,7 +44,7 @@ export function Hero() {
         </Reveal>
 
         <Reveal delay={150} className="relative mx-auto w-full max-w-[560px]">
-          <div className="relative rounded-3xl bg-white p-4 shadow-[0_30px_70px_-30px_rgba(27,27,35,0.28)] ring-1 ring-ink/5">
+          <div className="relative mb-8 rounded-3xl bg-white p-4 shadow-[0_30px_70px_-30px_rgba(27,27,35,0.28)] ring-1 ring-ink/5 sm:mb-10">
             <div className="relative h-[260px] overflow-hidden rounded-2xl bg-gradient-to-br from-surface to-[#efeaf7]">
               <svg
                 className="absolute inset-0 h-full w-full opacity-40"
@@ -72,12 +77,59 @@ export function Hero() {
               ))}
             </div>
 
-            <div className="absolute top-9 -left-7 flex items-center gap-2.5 rounded-2xl border border-border bg-white px-4 py-2.5 shadow-[0_16px_32px_-16px_rgba(27,27,35,0.25)] sm:-left-9">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              whileHover={{ y: -2 }}
+              className="absolute top-9 -left-7 flex items-center gap-2.5 rounded-2xl border border-border bg-white px-4 py-2.5 shadow-[0_16px_32px_-16px_rgba(27,27,35,0.25)] sm:-left-9"
+            >
               <CircleCheckBig className="size-5 shrink-0 text-success" aria-hidden="true" />
               <span className="font-ui text-sm font-medium text-ink whitespace-nowrap">
                 {hero.floatingBadge}
               </span>
-            </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.45, duration: 0.5 }}
+              whileHover={{ y: -2 }}
+              className="absolute -top-6 right-2 flex flex-col gap-2 rounded-2xl border border-border bg-white p-3 shadow-[0_16px_32px_-16px_rgba(27,27,35,0.25)] sm:right-4"
+            >
+              <div className="flex h-11 items-end gap-1">
+                {barHeights.map((h, i) => (
+                  <motion.span
+                    key={i}
+                    initial={{ height: 0 }}
+                    whileInView={{ height: h }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5 + i * 0.05, duration: 0.4, ease: "easeOut" }}
+                    className="w-1.5 rounded-full bg-primary"
+                  />
+                ))}
+              </div>
+              <div>
+                <p className="font-ui text-[10px] text-slate">Montant dégrevé</p>
+                <p className="font-display text-xs font-semibold text-ink">6,5 M€</p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.55, duration: 0.5 }}
+              whileHover={{ y: -2 }}
+              className="absolute -right-4 -bottom-6 hidden items-center gap-2.5 rounded-2xl border border-border bg-white px-4 py-2.5 shadow-[0_16px_32px_-16px_rgba(27,27,35,0.25)] sm:-right-8 sm:-bottom-8 sm:flex"
+            >
+              <CircleCheckBig className="size-5 shrink-0 text-success" aria-hidden="true" />
+              <span className="font-ui text-sm font-medium text-ink whitespace-nowrap">
+                Collecte des données
+              </span>
+            </motion.div>
           </div>
           <p className="mt-4 text-center font-ui text-sm text-slate">{hero.visualCaption}</p>
         </Reveal>

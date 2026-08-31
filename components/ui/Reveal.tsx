@@ -1,58 +1,99 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { cn } from "@/lib/utils";
+
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function Reveal({
   children,
   className,
   delay = 0,
-  as: Tag = "div",
+  y = 24,
   id,
+  hoverLift = false,
 }: {
   children: React.ReactNode;
   className?: string;
   delay?: number;
-  as?: keyof React.JSX.IntrinsicElements;
+  y?: number;
   id?: string;
+  hoverLift?: boolean;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const reduceMotion = useReducedMotion();
 
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
-
-    // Reduced motion is handled globally in globals.css (near-zero animation
-    // duration), so the reveal observer always runs and just completes instantly.
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -10% 0px" },
-    );
-
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
-
-  const Component = Tag as React.ElementType;
+  const variants: Variants = {
+    hidden: { opacity: 0, y: reduceMotion ? 0 : y },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: reduceMotion ? 0.01 : 0.6, delay: delay / 1000, ease: EASE },
+    },
+  };
 
   return (
-    <Component
-      ref={ref}
+    <motion.div
       id={id}
-      style={visible ? { animationDelay: `${delay}ms` } : undefined}
-      className={cn(
-        "opacity-0",
-        visible && "animate-reveal",
-        className,
-      )}
+      className={cn(className)}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2, margin: "0px 0px -10% 0px" }}
+      variants={variants}
+      whileHover={hoverLift && !reduceMotion ? { y: -6 } : undefined}
+      transition={hoverLift ? { type: "spring", stiffness: 300, damping: 22 } : undefined}
     >
       {children}
-    </Component>
+    </motion.div>
+  );
+}
+
+export function RevealGroup({
+  children,
+  className,
+  stagger = 0.08,
+  id,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  stagger?: number;
+  id?: string;
+}) {
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <motion.div
+      id={id}
+      className={cn(className)}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2, margin: "0px 0px -10% 0px" }}
+      variants={{
+        hidden: {},
+        visible: {
+          transition: { staggerChildren: reduceMotion ? 0 : stagger },
+        },
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+export const revealItemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } },
+};
+
+export function RevealItem({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <motion.div className={cn(className)} variants={revealItemVariants}>
+      {children}
+    </motion.div>
   );
 }

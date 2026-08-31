@@ -1,6 +1,11 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+const MotionLink = motion.create(Link);
 
 type ButtonOwnProps = {
   variant?: "primary" | "secondary" | "ghost";
@@ -12,11 +17,24 @@ type ButtonOwnProps = {
   onClick?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
 };
 
+// Drag/animation DOM event handlers conflict with framer-motion's own prop
+// types of the same name, so they're excluded — Button never needs them.
+type ConflictingHandlers =
+  | "onAnimationStart"
+  | "onAnimationEnd"
+  | "onAnimationIteration"
+  | "onDrag"
+  | "onDragStart"
+  | "onDragEnd";
+
 type ButtonProps = ButtonOwnProps &
-  Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, keyof ButtonOwnProps>;
+  Omit<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    keyof ButtonOwnProps | ConflictingHandlers
+  >;
 
 const base =
-  "inline-flex shrink-0 items-center justify-center gap-2 rounded-full font-ui font-medium transition-all duration-200 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-ink disabled:pointer-events-none disabled:opacity-50";
+  "inline-flex shrink-0 items-center justify-center gap-2 rounded-full font-ui font-medium transition-colors duration-200 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-ink disabled:pointer-events-none disabled:opacity-50";
 
 const variants = {
   // Dark text on the brand orange keeps the exact Mathis CTA color while
@@ -33,6 +51,9 @@ const sizes = {
   md: "h-[42px] px-6 text-[15px]",
 };
 
+const tap = { scale: 0.96 };
+const hover = { scale: 1.02 };
+
 export function Button({
   variant = "primary",
   size = "md",
@@ -43,29 +64,46 @@ export function Button({
   onClick,
   ...props
 }: ButtonProps) {
-  const classes = cn(base, variants[variant], sizes[size], className);
+  const classes = cn(base, variants[variant], sizes[size], "group", className);
+
+  const arrowIcon = arrow && (
+    <motion.span
+      className="inline-flex"
+      initial={{ x: 0 }}
+      whileHover={{ x: 3 }}
+      transition={{ type: "spring", stiffness: 400, damping: 20 }}
+    >
+      <ArrowRight className="size-4" aria-hidden="true" />
+    </motion.span>
+  );
 
   if (href) {
     return (
-      <Link
+      <MotionLink
         href={href}
         className={classes}
         onClick={onClick as React.MouseEventHandler<HTMLAnchorElement>}
+        whileHover={hover}
+        whileTap={tap}
+        transition={{ type: "spring", stiffness: 400, damping: 25 }}
       >
         {children}
-        {arrow && <ArrowRight className="size-4" aria-hidden="true" />}
-      </Link>
+        {arrowIcon}
+      </MotionLink>
     );
   }
 
   return (
-    <button
+    <motion.button
       className={classes}
       onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
+      whileHover={props.disabled ? undefined : hover}
+      whileTap={props.disabled ? undefined : tap}
+      transition={{ type: "spring", stiffness: 400, damping: 25 }}
       {...props}
     >
       {children}
-      {arrow && <ArrowRight className="size-4" aria-hidden="true" />}
-    </button>
+      {arrowIcon}
+    </motion.button>
   );
 }

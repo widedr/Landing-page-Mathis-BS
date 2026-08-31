@@ -26,9 +26,10 @@ export function Audience() {
               <Reveal
                 key={persona.title}
                 delay={i * 80}
-                className="flex flex-col gap-4 rounded-3xl border border-border p-7 transition-colors hover:border-primary/30 hover:bg-primary/[0.02]"
+                hoverLift
+                className="group flex cursor-default flex-col gap-4 rounded-3xl border border-border p-7 transition-colors duration-300 hover:border-primary/30 hover:bg-primary/[0.02] hover:shadow-[0_20px_40px_-24px_rgba(27,27,35,0.15)]"
               >
-                <div className="flex size-12 items-center justify-center rounded-2xl bg-primary/10 text-primary-ink">
+                <div className="flex size-12 items-center justify-center rounded-2xl bg-primary/10 text-primary-ink transition-transform duration-300 group-hover:scale-110">
                   <Icon className="size-6" aria-hidden="true" />
                 </div>
                 <h3 className="font-display text-lg font-bold text-ink">{persona.title}</h3>

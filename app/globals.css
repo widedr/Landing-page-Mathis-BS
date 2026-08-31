@@ -6,6 +6,8 @@
   --mathis-primary-hover: #ea670d;
   --mathis-primary-active: #d95e0a;
   --mathis-primary-ink: #c2410c; /* orange assombri — texte/icônes sur fond clair (contraste AA) */
+  --mathis-primary-soft: #fde8d2; /* halo/bordure des badges eyebrow, icônes */
+  --mathis-primary-very-soft: #fff8ec; /* fond des badges eyebrow */
   --mathis-accent: #ff6100; /* accent tertiaire — liens, mise en avant */
   --mathis-ink: #1b1b23; /* texte principal — titres, corps de texte */
   --mathis-slate: #5b6472; /* texte secondaire — légendes, support (assombri pour marge AA) */
@@ -29,6 +31,8 @@
   --color-primary-hover: var(--mathis-primary-hover);
   --color-primary-active: var(--mathis-primary-active);
   --color-primary-ink: var(--mathis-primary-ink);
+  --color-primary-soft: var(--mathis-primary-soft);
+  --color-primary-very-soft: var(--mathis-primary-very-soft);
   --color-accent: var(--mathis-accent);
   --color-ink: var(--mathis-ink);
   --color-slate: var(--mathis-slate);

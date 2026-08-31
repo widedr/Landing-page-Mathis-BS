@@ -12,13 +12,13 @@ export function Eyebrow({
   return (
     <div
       className={cn(
-        "inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5",
+        "inline-flex items-center gap-2 rounded-full border border-primary-soft bg-primary-very-soft px-4 py-1.5",
         align === "center" && "mx-auto",
         className,
       )}
     >
       <span className="size-1.5 shrink-0 rounded-full bg-primary" aria-hidden="true" />
-      <span className="font-ui text-xs font-semibold tracking-[0.14em] text-primary-ink uppercase">
+      <span className="font-ui text-xs font-semibold tracking-[0.14em] text-primary uppercase">
         {children}
       </span>
     </div>
