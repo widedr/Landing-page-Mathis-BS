@@ -6,7 +6,7 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { TextField } from "@/components/ui/TextField";
 import { Reveal } from "@/components/ui/Reveal";
-import { ctaLabel, ctaSecondaryLabel, finalCta } from "@/lib/content";
+import { ctaLabel, hero, finalCta } from "@/lib/content";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -40,27 +40,26 @@ export function FinalCta() {
   return (
     <section id="cta-final" className="relative overflow-hidden py-20 sm:py-28">
       <div
-        className="pointer-events-none absolute top-[-260px] left-[-180px] size-[560px] rounded-full bg-primary/15 blur-3xl"
+        className="pointer-events-none absolute top-0 right-0 size-[510px] rounded-full bg-primary/[0.07] blur-3xl"
         aria-hidden="true"
       />
 
-      <Container className="relative flex flex-col items-center gap-14">
-        <Reveal className="flex flex-col items-center gap-8 text-center">
-          <h2 className="font-display max-w-3xl text-3xl leading-[1.15] font-extrabold text-balance text-ink sm:text-4xl lg:text-[2.75rem]">
-            {finalCta.title}
+      <Container className="relative grid gap-14 lg:grid-cols-2 lg:items-center">
+        <Reveal className="flex flex-col items-start gap-8">
+          <h2 className="font-display max-w-xl text-3xl leading-[1.15] font-extrabold text-balance text-ink sm:text-4xl lg:text-[2.75rem]">
+            Prêt à reprendre la main sur votre{" "}
+            <span className="text-primary">fiscalité locale</span> ?
           </h2>
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <Button href="#cta-form">{ctaLabel}</Button>
-            <Button href="#plateforme" variant="secondary">
-              {ctaSecondaryLabel}
-            </Button>
-          </div>
+          <p className="max-w-md text-lg leading-relaxed text-slate">{finalCta.subtitle}</p>
+          <Button href="#plateforme" variant="secondary" arrow>
+            {hero.secondaryCta}
+          </Button>
         </Reveal>
 
         <Reveal
           delay={120}
           id="cta-form"
-          className="w-full max-w-xl scroll-mt-24 rounded-3xl border border-border bg-white p-8 shadow-[0_1px_2px_rgba(27,27,35,0.04),0_24px_48px_-24px_rgba(27,27,35,0.15)] sm:p-10"
+          className="w-full scroll-mt-24 rounded-3xl border border-border bg-white p-8 shadow-[0_1px_2px_rgba(27,27,35,0.04),0_24px_48px_-24px_rgba(27,27,35,0.15)] sm:p-10"
         >
           {status === "success" ? (
             <div className="flex flex-col items-center gap-4 py-6 text-center">

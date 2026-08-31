@@ -42,7 +42,7 @@ const variants = {
   primary:
     "bg-btn-primary text-white uppercase tracking-[0.4px] shadow-[0_12px_24px_-10px_rgba(255,111,0,0.55)] hover:bg-btn-primary-hover hover:shadow-[0_16px_28px_-8px_rgba(255,111,0,0.6)] active:bg-btn-primary-active",
   secondary:
-    "bg-btn-secondary text-white uppercase tracking-[0.4px] shadow-[0_12px_24px_-10px_rgba(91,63,214,0.45)] hover:bg-btn-secondary-hover hover:shadow-[0_16px_28px_-8px_rgba(91,63,214,0.5)] active:bg-btn-secondary-active",
+    "bg-secondary text-white uppercase tracking-[0.4px] shadow-[0_12px_24px_-10px_rgba(91,63,214,0.45)] hover:bg-secondary-hover hover:shadow-[0_16px_28px_-8px_rgba(91,63,214,0.5)] active:bg-secondary-active",
   ghost: "text-ink hover:text-primary-ink",
 };
 

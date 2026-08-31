@@ -53,15 +53,24 @@ export function Platform() {
 
   return (
     <section id="plateforme" className="py-20 sm:py-28">
-      <Container className="flex flex-col gap-12">
-        <SectionHeading eyebrow={platform.eyebrow} title={platform.title} />
+      <Container className="flex flex-col gap-16">
+        <SectionHeading
+          align="left"
+          eyebrow={platform.eyebrow}
+          title={
+            <>
+              Une <span className="text-primary">plateforme</span> complète, module par
+              module
+            </>
+          }
+        />
 
         {/* Desktop: tabs */}
         <div className="hidden md:block">
           <div
             role="tablist"
             aria-label="Modules de la plateforme Mathis"
-            className="mx-auto mb-10 flex max-w-fit flex-wrap items-center justify-center gap-2 rounded-full border border-border bg-surface/60 p-1.5"
+            className="mb-10 flex items-center gap-1 border border-border bg-white p-1"
           >
             {platform.modules.map((m, i) => (
               <button
@@ -72,10 +81,10 @@ export function Platform() {
                 aria-controls={`${idBase}-panel-${i}`}
                 onClick={() => setActiveTab(i)}
                 className={cn(
-                  "rounded-full px-5 py-2 font-ui text-sm font-medium whitespace-nowrap transition-colors",
+                  "flex-1 px-3 py-2 font-display text-[15px] font-semibold whitespace-nowrap transition-colors",
                   activeTab === i
-                    ? "bg-ink text-white"
-                    : "text-slate hover:text-ink",
+                    ? "bg-primary-very-soft text-btn-primary"
+                    : "font-medium text-slate hover:text-ink",
                 )}
               >
                 {m.tab}
@@ -88,7 +97,7 @@ export function Platform() {
             id={`${idBase}-panel-${activeTab}`}
             aria-labelledby={`${idBase}-tab-${activeTab}`}
             key={active.id}
-            className="grid animate-reveal items-center gap-12 rounded-3xl border border-border bg-white p-10 lg:grid-cols-2 lg:p-14"
+            className="grid animate-reveal items-center gap-12 border border-border bg-white p-14"
           >
             <div className="flex flex-col gap-6">
               <h3 className="font-display text-2xl font-bold text-ink sm:text-3xl">

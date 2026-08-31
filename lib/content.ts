@@ -6,7 +6,6 @@ export const nav = [
 ];
 
 export const ctaLabel = "Demander une démo";
-export const ctaSecondaryLabel = "Découvrir la plateforme";
 
 export const hero = {
   eyebrow: "Plateforme fiscale SaaS",
@@ -214,11 +213,13 @@ export const results = {
 };
 
 export const audience = {
-  eyebrow: "Pour qui",
+  eyebrow: "Pour Qui",
   title: "Pour qui ?",
+  intro:
+    "Une plateforme conçue pour chaque métier du logement social. Que vous pilotiez la stratégie financière, l'optimisation fiscale ou la gestion comptable au quotidien, Mathis s'adapte à vos enjeux opérationnels. Retrouvez en un coup d'œil l'impact direct de la plateforme sur votre périmètre pour transformer vos contraintes métiers en leviers de performance.",
   personas: [
     {
-      icon: "user",
+      icon: "user-round-cog",
       title: "Fiscalité",
       description: "Identifiez les opportunités et pilotez vos dégrèvements.",
     },
@@ -228,7 +229,7 @@ export const audience = {
       description: "Projetez votre charge fiscale et pilotez vos arbitrages.",
     },
     {
-      icon: "receipt",
+      icon: "calculator",
       title: "Comptabilité",
       description: "Automatisez vos écritures et déclarations.",
     },
@@ -246,42 +247,6 @@ export const testimonial = {
   title: "L'impact recherché par nos clients",
   quote:
     "Nous avons considérablement réduit le temps consacré à la collecte et à l'analyse des données fiscales.",
-};
-
-export const howItWorks = {
-  eyebrow: "Comment ça marche",
-  title: "De la démo à vos premiers dégrèvements",
-  steps: [
-    {
-      delay: "48h",
-      title: "Diagnostic",
-      description: "Un expert Mathis analyse votre patrimoine et vos enjeux fiscaux actuels.",
-    },
-    {
-      delay: "1 semaine",
-      title: "Connexion des données",
-      description: "Import de votre matrice cadastrale, sans double saisie.",
-    },
-    {
-      delay: "2 semaines",
-      title: "Prise en main",
-      description: "Formation de vos équipes, premiers tableaux de bord actifs.",
-    },
-    {
-      delay: "Continu",
-      title: "Accompagnement expert",
-      description: "Suivi des dégrèvements, veille réglementaire, support réactif.",
-    },
-  ],
-};
-
-export const reassurance = {
-  items: [
-    { icon: "location", label: "Données hébergées en France" },
-    { icon: "lock", label: "Conforme RGPD" },
-    { icon: "user", label: "Accès par rôle" },
-    { icon: "people", label: "Accompagnement expert dédié" },
-  ],
 };
 
 export const faq = [
@@ -339,6 +304,8 @@ export const faq = [
 
 export const finalCta = {
   title: "Prêt à reprendre la main sur votre fiscalité locale ?",
+  subtitle:
+    "Rejoignez les bailleurs sociaux qui ont fait de Mathis le pilote de leur fiscalité locale, de la collecte des avis fonciers à la récupération de vos dégrèvements.",
   reassurance:
     "Vos données restent confidentielles — aucune sollicitation commerciale hors de ce projet.",
   confirmation: "Votre demande a bien été envoyée. Un expert Mathis vous recontacte sous 24h.",

@@ -5,20 +5,13 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { Logo } from "@/components/ui/Logo";
 import { cn } from "@/lib/utils";
 import { ctaLabel, nav } from "@/lib/content";
 
 export function Header() {
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [showMicroMention, setShowMicroMention] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     const target = document.getElementById("plateforme");
@@ -41,19 +34,10 @@ export function Header() {
   }, [menuOpen]);
 
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-50 bg-white/95 backdrop-blur transition-shadow duration-300",
-        scrolled && "shadow-[0_1px_12px_rgba(27,27,35,0.06)]",
-      )}
-    >
+    <header className="sticky top-0 z-50 bg-white/95 shadow-[0_1px_12px_rgba(27,27,35,0.06)] backdrop-blur-sm">
       <Container className="flex h-16 items-center justify-between">
-        <Link
-          href="#top"
-          className="flex items-center gap-2 font-display text-xl font-extrabold text-ink"
-        >
-          <span className="size-2.5 rounded-sm bg-primary" aria-hidden="true" />
-          Mathis
+        <Link href="#top" aria-label="Mathis, accueil">
+          <Logo />
         </Link>
 
         <nav className="hidden items-center gap-9 lg:flex" aria-label="Navigation principale">

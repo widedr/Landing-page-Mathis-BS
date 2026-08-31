@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { Logo } from "@/components/ui/Logo";
 import { ctaLabel, footer } from "@/lib/content";
 
 export function Footer() {
@@ -8,13 +9,9 @@ export function Footer() {
     <footer className="border-t border-border bg-white py-16">
       <Container className="flex flex-col gap-12">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
-          <div className="flex flex-col gap-2">
-            <Link href="#top" className="flex items-center gap-2 font-display text-xl font-extrabold text-ink">
-              <span className="size-2.5 rounded-sm bg-primary" aria-hidden="true" />
-              Mathis
-            </Link>
-            <p className="font-ui text-sm text-slate">{footer.baseline}</p>
-          </div>
+          <Link href="#top" aria-label="Mathis, accueil">
+            <Logo />
+          </Link>
           <Button href="#cta-final" size="sm">
             {ctaLabel}
           </Button>

@@ -7,8 +7,6 @@ import { Platform } from "@/components/sections/Platform";
 import { Results } from "@/components/sections/Results";
 import { Audience } from "@/components/sections/Audience";
 import { Testimonial } from "@/components/sections/Testimonial";
-import { HowItWorks } from "@/components/sections/HowItWorks";
-import { Reassurance } from "@/components/sections/Reassurance";
 import { Faq } from "@/components/sections/Faq";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { Footer } from "@/components/sections/Footer";
@@ -26,8 +24,6 @@ export default function Home() {
         <Results />
         <Audience />
         <Testimonial />
-        <HowItWorks />
-        <Reassurance />
         <Faq />
         <FinalCta />
       </main>

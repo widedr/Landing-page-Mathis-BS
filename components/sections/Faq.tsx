@@ -14,9 +14,9 @@ export function Faq() {
   return (
     <section id="faq" className="py-20 sm:py-28">
       <Container className="flex flex-col gap-12">
-        <SectionHeading eyebrow="FAQ" title="Questions fréquentes" />
+        <SectionHeading align="left" eyebrow="FAQ" title="Questions fréquentes" divider />
 
-        <Reveal delay={100} className="mx-auto w-full max-w-3xl">
+        <Reveal delay={100} className="w-full">
           {faq.map((item, i) => (
             <AccordionItem
               key={item.question}

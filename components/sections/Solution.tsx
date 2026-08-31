@@ -3,7 +3,6 @@ import type { LucideIcon } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
-import { Badge } from "@/components/ui/Badge";
 import { solution } from "@/lib/content";
 
 const icons: Record<string, LucideIcon> = {
@@ -16,8 +15,26 @@ const icons: Record<string, LucideIcon> = {
 export function Solution() {
   return (
     <section id="solution" className="bg-surface/50 py-20 sm:py-28">
-      <Container className="flex flex-col gap-14">
-        <SectionHeading eyebrow={solution.eyebrow} title={solution.title} divider />
+      <Container className="flex flex-col gap-8">
+        <SectionHeading
+          align="left"
+          eyebrow={solution.eyebrow}
+          title={
+            <>
+              Une <span className="text-primary">méthode</span> en 4 temps pour reprendre
+              la main sur votre <span className="text-primary">fiscalité</span>
+            </>
+          }
+          divider
+        />
+
+        <Reveal delay={100} className="flex flex-col items-start gap-5">
+          <p className="max-w-2xl text-base leading-relaxed text-slate">{solution.credibility}</p>
+          <span className="inline-flex items-center gap-2 rounded-none border border-secondary-light bg-secondary-very-light px-4 py-2 font-ui text-sm font-medium text-secondary">
+            <ShieldCheck className="size-4 shrink-0" aria-hidden="true" />
+            {solution.badges[0]}
+          </span>
+        </Reveal>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {solution.pillars.map((pillar, i) => {
@@ -25,14 +42,14 @@ export function Solution() {
             return (
               <Reveal
                 key={pillar.number}
-                delay={i * 80}
+                delay={200 + i * 80}
                 hoverLift
                 className="group flex cursor-default flex-col gap-5 rounded-3xl border border-border bg-white p-7 transition-shadow duration-300 hover:shadow-[0_20px_40px_-24px_rgba(27,27,35,0.2)]"
               >
-                <div className="flex size-14 items-center justify-center rounded-2xl bg-primary/10 text-primary-ink transition-transform duration-300 group-hover:scale-110">
+                <div className="flex size-14 items-center justify-center rounded-[30px] bg-secondary-very-light text-secondary transition-transform duration-300 group-hover:scale-110">
                   <Icon className="size-6" strokeWidth={2} aria-hidden="true" />
                 </div>
-                <span className="font-ui text-sm font-semibold text-primary-ink">
+                <span className="font-ui text-sm font-semibold text-secondary">
                   {pillar.number}
                 </span>
                 <div className="flex flex-col gap-2">
@@ -43,17 +60,6 @@ export function Solution() {
             );
           })}
         </div>
-
-        <Reveal delay={320} className="flex flex-col items-center gap-6 text-center">
-          <p className="max-w-2xl text-base leading-relaxed text-slate">{solution.credibility}</p>
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            {solution.badges.map((label) => (
-              <Badge key={label} icon={ShieldCheck}>
-                {label}
-              </Badge>
-            ))}
-          </div>
-        </Reveal>
       </Container>
     </section>
   );

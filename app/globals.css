@@ -20,14 +20,19 @@
   --mathis-warning-soft: #fdf0e3;
   --mathis-error: #dc2626; /* erreurs de formulaire — distinct du orange CTA */
 
-  /* Boutons — couleurs confirmées depuis le Figma (distinctes du orange
+  /* Bouton primaire — ambre confirmé depuis le Figma (distinct du orange
      "primary" utilisé pour les badges/icônes/décor ailleurs sur la page) */
   --mathis-btn-primary: #ff6f00;
   --mathis-btn-primary-hover: #e65100;
   --mathis-btn-primary-active: #cc5500;
-  --mathis-btn-secondary: #5b3fd6;
-  --mathis-btn-secondary-hover: #4d36b6;
-  --mathis-btn-secondary-active: #442fa0;
+
+  /* Violet "secondary" — deuxième couleur de marque confirmée : boutons
+     secondaires, teintes d'icônes, badges/numéros dans Solution/Audience/CTA */
+  --mathis-secondary: #5b3fd6;
+  --mathis-secondary-hover: #4d36b6;
+  --mathis-secondary-active: #442fa0;
+  --mathis-secondary-light: #a288fd;
+  --mathis-secondary-very-light: #ede9fe;
 
   --shadow-card: 0 1px 2px rgba(27, 27, 35, 0.04), 0 12px 32px -16px rgba(27, 27, 35, 0.12);
   --shadow-float: 0 20px 45px -20px rgba(249, 115, 22, 0.35);
@@ -56,9 +61,11 @@
   --color-btn-primary: var(--mathis-btn-primary);
   --color-btn-primary-hover: var(--mathis-btn-primary-hover);
   --color-btn-primary-active: var(--mathis-btn-primary-active);
-  --color-btn-secondary: var(--mathis-btn-secondary);
-  --color-btn-secondary-hover: var(--mathis-btn-secondary-hover);
-  --color-btn-secondary-active: var(--mathis-btn-secondary-active);
+  --color-secondary: var(--mathis-secondary);
+  --color-secondary-hover: var(--mathis-secondary-hover);
+  --color-secondary-active: var(--mathis-secondary-active);
+  --color-secondary-light: var(--mathis-secondary-light);
+  --color-secondary-very-light: var(--mathis-secondary-very-light);
 
   --radius-xs: 4px;
   --radius-sm: 8px;
