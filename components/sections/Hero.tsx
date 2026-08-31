@@ -48,7 +48,7 @@ export function Hero() {
           <div className="relative mb-8 rounded-none bg-white p-4 shadow-[0_30px_70px_-30px_rgba(27,27,35,0.28)] ring-1 ring-ink/5 sm:mb-10">
             <div className="relative h-[260px] overflow-hidden rounded-none border border-border">
               <Image
-                src="/screenshots/patrimoine.jpg"
+                src="/screenshots/patrimoine.png"
                 alt="Aperçu du module Patrimoine de Mathis : carte du patrimoine et indicateurs fiscaux"
                 fill
                 priority

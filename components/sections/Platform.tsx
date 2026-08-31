@@ -2,15 +2,6 @@
 
 import { useId, useState } from "react";
 import Image from "next/image";
-import {
-  Building2,
-  ChartNoAxesCombined,
-  ClipboardCheck,
-  LayoutDashboard,
-  Map,
-  Receipt,
-} from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { CheckItem } from "@/components/ui/CheckItem";
@@ -19,51 +10,28 @@ import { AccordionItem } from "@/components/ui/AccordionItem";
 import { cn } from "@/lib/utils";
 import { platform } from "@/lib/content";
 
-const moduleIcons: Record<string, LucideIcon> = {
-  patrimoine: Map,
-  fiscalite: Receipt,
-  degrevements: ClipboardCheck,
-  simulation: ChartNoAxesCombined,
-  comptabilite: Building2,
-  reporting: LayoutDashboard,
-};
-
-// Only the Patrimoine module has a real product screenshot so far — the
-// others keep the labelled placeholder until their captures are ready.
-const moduleScreenshots: Partial<Record<string, string>> = {
-  patrimoine: "/screenshots/patrimoine.jpg",
+// Vraies captures produit fournies pour chaque module.
+const moduleScreenshots: Record<string, string> = {
+  patrimoine: "/screenshots/patrimoine.png",
+  fiscalite: "/screenshots/fiscalite.png",
+  degrevements: "/screenshots/degrevements.png",
+  simulation: "/screenshots/simulation.png",
+  comptabilite: "/screenshots/comptabilite.png",
+  reporting: "/screenshots/reporting.png",
 };
 
 function ModuleVisual({ id, label }: { id: string; label: string }) {
-  const Icon = moduleIcons[id];
   const screenshot = moduleScreenshots[id];
 
-  if (screenshot) {
-    return (
-      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-none border border-border shadow-[0_8px_20px_-8px_rgba(27,27,35,0.15)]">
-        <Image
-          src={screenshot}
-          alt={label}
-          fill
-          sizes="(min-width: 1024px) 478px, 100vw"
-          className="object-cover object-left-top"
-        />
-      </div>
-    );
-  }
-
   return (
-    <div className="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-none border border-border bg-gradient-to-br from-surface to-white">
-      <div
-        className="pointer-events-none absolute -top-10 -right-10 size-40 rounded-full bg-primary/10 blur-2xl"
-        aria-hidden="true"
+    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-none border border-border shadow-[0_8px_20px_-8px_rgba(27,27,35,0.15)]">
+      <Image
+        src={screenshot}
+        alt={label}
+        fill
+        sizes="(min-width: 1024px) 478px, 100vw"
+        className="object-cover object-top"
       />
-      <div className="flex flex-col items-center gap-3 px-6 text-center">
-        <div className="flex size-14 items-center justify-center rounded-none bg-white text-primary-ink shadow-[0_8px_20px_-8px_rgba(27,27,35,0.15)]">
-          <Icon className="size-6" aria-hidden="true" />
-        </div>
-        <span className="font-ui text-sm text-slate">{label}</span>
-      </div>
     </div>
   );
 }
