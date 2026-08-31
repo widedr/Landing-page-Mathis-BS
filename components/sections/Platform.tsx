@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
+import Image from "next/image";
 import {
   Building2,
   ChartNoAxesCombined,
@@ -27,10 +28,32 @@ const moduleIcons: Record<string, LucideIcon> = {
   reporting: LayoutDashboard,
 };
 
+// Only the Patrimoine module has a real product screenshot so far — the
+// others keep the labelled placeholder until their captures are ready.
+const moduleScreenshots: Partial<Record<string, string>> = {
+  patrimoine: "/screenshots/patrimoine.jpg",
+};
+
 function ModuleVisual({ id, label }: { id: string; label: string }) {
   const Icon = moduleIcons[id];
+  const screenshot = moduleScreenshots[id];
+
+  if (screenshot) {
+    return (
+      <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl border border-border shadow-[0_8px_20px_-8px_rgba(27,27,35,0.15)]">
+        <Image
+          src={screenshot}
+          alt={label}
+          fill
+          sizes="(min-width: 1024px) 528px, 100vw"
+          className="object-cover object-[50%_18%]"
+        />
+      </div>
+    );
+  }
+
   return (
-    <div className="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-surface to-white">
+    <div className="relative flex aspect-[3/2] w-full items-center justify-center overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-surface to-white">
       <div
         className="pointer-events-none absolute -top-10 -right-10 size-40 rounded-full bg-primary/10 blur-2xl"
         aria-hidden="true"
