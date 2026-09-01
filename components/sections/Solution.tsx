@@ -1,4 +1,4 @@
-import { Layers, Sparkles, ChartNoAxesCombined, LayoutDashboard, ShieldCheck } from "lucide-react";
+import { Layers, Lightbulb, Sparkles, ChartNoAxesCombined, LayoutDashboard, ShieldCheck } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -19,6 +19,7 @@ export function Solution() {
         <SectionHeading
           align="left"
           eyebrow={solution.eyebrow}
+          eyebrowIcon={Lightbulb}
           title={
             <>
               Une <span className="text-primary">méthode</span> en 4 temps pour reprendre

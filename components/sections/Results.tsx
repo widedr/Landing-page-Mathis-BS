@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CircleCheckBig, DatabaseZap, ListChecks, MapPinCheck, WandSparkles } from "lucide-react";
+import { CircleCheckBig, DatabaseZap, ListChecks, MapPinCheck, TrendingUp, WandSparkles } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -22,6 +22,7 @@ export function Results() {
         <SectionHeading
           align="left"
           eyebrow={results.eyebrow}
+          eyebrowIcon={TrendingUp}
           title={
             <>
               Des <span className="text-primary">résultats visibles</span> dès les premiers

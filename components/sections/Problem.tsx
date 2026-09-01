@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, CircleCheckBig, X } from "lucide-react";
+import { AlertTriangle, ArrowRight, CircleCheckBig, X } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
@@ -31,6 +31,7 @@ export function Problem() {
         <SectionHeading
           align="left"
           eyebrow={problem.eyebrow}
+          eyebrowIcon={AlertTriangle}
           title={
             <>
               Votre <span className="text-primary">fiscalité locale</span> ne devrait pas

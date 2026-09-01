@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { CircleCheckBig } from "lucide-react";
+import { CalendarDays, CircleCheckBig, Building2 } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -38,7 +38,7 @@ export function Hero() {
 
       <Container className="relative grid gap-16 py-16 sm:py-20 lg:grid-cols-2 lg:items-center lg:py-28">
         <Reveal className="flex flex-col gap-7">
-          <Eyebrow align="left">{hero.eyebrow}</Eyebrow>
+          <Eyebrow align="left" icon={Building2}>{hero.eyebrow}</Eyebrow>
           <h1 className="font-display max-w-xl text-4xl leading-[1.1] font-extrabold text-balance text-ink sm:text-5xl lg:text-[3.25rem]">
             {hero.title}
           </h1>
@@ -46,7 +46,10 @@ export function Hero() {
             {hero.subtitle}
           </p>
           <div className="flex flex-col gap-3 sm:flex-row">
-            <Button href="#cta-final">{ctaLabel}</Button>
+            <Button href="#cta-final">
+              <CalendarDays className="size-4" aria-hidden="true" />
+              {ctaLabel}
+            </Button>
             <Button href="#plateforme" variant="secondary" arrow>
               {hero.secondaryCta}
             </Button>

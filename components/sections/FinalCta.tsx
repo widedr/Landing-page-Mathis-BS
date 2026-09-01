@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CircleCheckBig, LoaderCircle, ShieldCheck } from "lucide-react";
+import { CalendarDays, CircleCheckBig, LoaderCircle, ShieldCheck } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { MuiField } from "@/components/ui/MuiField";
@@ -108,7 +108,10 @@ export function FinalCta() {
                       Envoi en cours…
                     </>
                   ) : (
-                    ctaLabel
+                    <>
+                      <CalendarDays className="size-4" aria-hidden="true" />
+                      {ctaLabel}
+                    </>
                   )}
                 </Button>
 

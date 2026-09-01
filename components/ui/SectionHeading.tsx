@@ -1,9 +1,11 @@
+import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Eyebrow } from "./Eyebrow";
 import { Reveal } from "./Reveal";
 
 export function SectionHeading({
   eyebrow,
+  eyebrowIcon,
   title,
   description,
   align = "center",
@@ -11,6 +13,7 @@ export function SectionHeading({
   className,
 }: {
   eyebrow?: string;
+  eyebrowIcon?: LucideIcon;
   title: React.ReactNode;
   description?: React.ReactNode;
   align?: "center" | "left";
@@ -27,7 +30,7 @@ export function SectionHeading({
         className,
       )}
     >
-      {eyebrow && <Eyebrow align={align}>{eyebrow}</Eyebrow>}
+      {eyebrow && <Eyebrow align={align} icon={eyebrowIcon}>{eyebrow}</Eyebrow>}
       <h2
         className={cn(
           "font-display max-w-3xl text-3xl leading-[1.15] font-extrabold text-balance text-ink sm:text-4xl lg:text-[2.75rem]",

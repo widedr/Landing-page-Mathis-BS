@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { CalendarDays, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/ui/Logo";
@@ -63,6 +63,7 @@ export function Header() {
             Réponse sous 24h par un expert
           </span>
           <Button href="#cta-final" size="sm" className="hidden sm:inline-flex">
+            <CalendarDays className="size-3.5" aria-hidden="true" />
             {ctaLabel}
           </Button>
           <button
@@ -91,6 +92,7 @@ export function Header() {
               </a>
             ))}
             <Button href="#cta-final" className="mt-2 w-full" onClick={() => setMenuOpen(false)}>
+              <CalendarDays className="size-4" aria-hidden="true" />
               {ctaLabel}
             </Button>
           </Container>

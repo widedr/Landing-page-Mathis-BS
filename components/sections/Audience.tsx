@@ -42,7 +42,7 @@ export function Audience() {
         </div>
 
         <Reveal delay={200} className="flex flex-1 flex-col items-start gap-5">
-          <Eyebrow align="left">{audience.eyebrow}</Eyebrow>
+          <Eyebrow align="left" icon={UserRoundCog}>{audience.eyebrow}</Eyebrow>
           <h2 className="font-display text-3xl leading-[1.15] font-extrabold text-ink sm:text-4xl lg:text-[2.75rem]">
             {audience.title}
           </h2>

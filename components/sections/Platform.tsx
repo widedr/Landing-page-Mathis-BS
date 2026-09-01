@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
+import { LayoutDashboard } from "lucide-react";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -58,6 +59,7 @@ export function Platform() {
         <SectionHeading
           align="left"
           eyebrow={platform.eyebrow}
+          eyebrowIcon={LayoutDashboard}
           title={
             <>
               Une <span className="text-primary">plateforme</span> complète, module par
