@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CalendarDays } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/ui/Logo";
@@ -13,6 +14,7 @@ export function Footer() {
             <Logo />
           </Link>
           <Button href="#cta-final" size="sm">
+            <CalendarDays className="size-3.5" aria-hidden="true" />
             {ctaLabel}
           </Button>
         </div>

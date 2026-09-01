@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CircleCheckBig, LoaderCircle, ShieldCheck } from "lucide-react";
+import { CalendarDays, CircleCheckBig, LoaderCircle, ShieldCheck } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { MuiField } from "@/components/ui/MuiField";
@@ -56,12 +56,21 @@ export function FinalCta() {
           </Button>
         </Reveal>
 
-        {/* Carte formulaire avec cadre orange décalé (Figma) */}
+        {/* Dossier orange (contour) calé au plus près de la carte blanche :
+            onglet en haut à gauche + bord supérieur + bord droit. Le contenu
+            vit dans la carte → parfaitement aligné. */}
         <Reveal delay={120} id="cta-form" className="relative w-full scroll-mt-24">
           <span
-            className="pointer-events-none absolute -top-3 -right-3 hidden h-full w-full border-2 border-btn-primary sm:block"
             aria-hidden="true"
-          />
+            className="pointer-events-none absolute inset-0 hidden translate-x-[7px] -translate-y-[7px] sm:block"
+          >
+            {/* onglet */}
+            <span className="absolute -top-[22px] left-0 h-[22px] w-[28%] border-[3px] border-b-0 border-btn-primary" />
+            {/* bord supérieur (à droite de l'onglet) */}
+            <span className="absolute top-0 right-0 left-[28%] border-t-[3px] border-btn-primary" />
+            {/* bord droit */}
+            <span className="absolute top-0 right-0 bottom-0 border-r-[3px] border-btn-primary" />
+          </span>
           <div className="relative border border-border bg-white p-8 shadow-[0_1px_2px_rgba(27,27,35,0.04),0_24px_48px_-24px_rgba(27,27,35,0.15)] sm:p-10">
             {status === "success" ? (
               <div className="flex flex-col items-center gap-4 py-6 text-center">
@@ -99,7 +108,10 @@ export function FinalCta() {
                       Envoi en cours…
                     </>
                   ) : (
-                    ctaLabel
+                    <>
+                      <CalendarDays className="size-4" aria-hidden="true" />
+                      {ctaLabel}
+                    </>
                   )}
                 </Button>
 
