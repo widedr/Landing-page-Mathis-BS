@@ -1,6 +1,7 @@
 "use client";
 
-import { Lock, MapPinCheck, ShieldCheck, Users } from "lucide-react";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { Lock, MapPinCheck, Milestone, ShieldCheck, Users } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
@@ -39,9 +40,21 @@ const trustItems = [
   { Icon: Users, label: "Accompagnement expert dédié" },
 ];
 
+// Child variant — circle springs in after the parent RevealItem fades up
+const circleVariants: Variants = {
+  hidden: { scale: 0.35, opacity: 0 },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    transition: { type: "spring", stiffness: 280, damping: 18, delay: 0.12 },
+  },
+};
+
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export function HowItWorks() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <>
       {/* ── Steps section ─────────────────────────────────────────────────── */}
@@ -55,7 +68,7 @@ export function HowItWorks() {
         <Container className="relative flex flex-col gap-12">
           {/* Heading */}
           <Reveal className="flex flex-col items-start gap-5">
-            <Eyebrow align="left">Comment ça marche</Eyebrow>
+            <Eyebrow align="left" icon={Milestone}>Comment ça marche</Eyebrow>
             <h2 className="font-display max-w-2xl text-3xl font-extrabold leading-[1.15] text-ink sm:text-4xl lg:text-[2.75rem]">
               De la démo à vos premiers{" "}
               <span className="text-primary">dégrèvements</span>
@@ -69,31 +82,43 @@ export function HowItWorks() {
 
           {/* Steps grid */}
           <div className="relative">
-            {/* Connector line between circles — desktop only */}
-            <div
-              className="absolute top-7 hidden h-[2px] bg-primary/25 md:block"
+            {/* Connector line — draws left-to-right when in view, desktop only */}
+            <motion.div
+              className="absolute top-7 hidden h-[2px] origin-left bg-primary/25 md:block"
               style={{
                 left: "calc(12.5% + 28px)",
                 right: "calc(12.5% + 28px)",
               }}
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={
+                reduceMotion
+                  ? { duration: 0 }
+                  : { duration: 0.75, delay: 0.25, ease: [0.16, 1, 0.3, 1] }
+              }
               aria-hidden="true"
             />
 
-            <RevealGroup className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-4">
+            <RevealGroup
+              className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-4"
+              stagger={0.12}
+            >
               {steps.map((step) => (
                 <RevealItem
                   key={step.n}
                   className="flex flex-col items-center gap-5 text-center"
                 >
-                  {/* Numbered circle */}
-                  <div
+                  {/* Numbered circle — springs in as a child variant */}
+                  <motion.div
+                    variants={reduceMotion ? {} : circleVariants}
                     className="relative flex size-14 shrink-0 items-center justify-center rounded-full border-2 border-primary/20 bg-primary-very-soft"
                     style={{ boxShadow: "0 0 0 4px rgba(249,115,22,0.10)" }}
                   >
                     <span className="font-display text-lg font-bold text-primary">
                       {step.n}
                     </span>
-                  </div>
+                  </motion.div>
 
                   {/* Title + description */}
                   <div className="flex flex-col gap-2">
