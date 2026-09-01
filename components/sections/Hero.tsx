@@ -66,7 +66,7 @@ export function Hero() {
                 fill
                 priority
                 sizes="(min-width: 1024px) 528px, 100vw"
-                className="object-cover object-center"
+                className="object-contain"
               />
             </div>
             <div className="grid grid-cols-3 gap-4 px-2 py-5">
