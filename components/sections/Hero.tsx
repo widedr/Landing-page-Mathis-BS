@@ -58,18 +58,19 @@ export function Hero() {
         </Reveal>
 
         <Reveal delay={150} className="relative mx-auto w-full max-w-[560px]">
-          <div className="relative mb-8 rounded-none bg-white p-4 shadow-[0_30px_70px_-30px_rgba(27,27,35,0.28)] ring-1 ring-ink/5 sm:mb-10">
-            <div className="relative aspect-[533/357]">
+          <div className="relative mb-8 rounded-none bg-white shadow-[0_30px_70px_-30px_rgba(27,27,35,0.28)] ring-1 ring-ink/5 sm:mb-10">
+            {/* Dashboard qui remplit la carte, bord à bord (Figma) */}
+            <div className="relative aspect-[478/308] w-full border-b border-border">
               <Image
-                src="/screenshots/patrimoine.png"
+                src="/hero-patrimoine.png"
                 alt="Aperçu du module Patrimoine de Mathis : carte du patrimoine et indicateurs fiscaux"
                 fill
                 priority
                 sizes="(min-width: 1024px) 528px, 100vw"
-                className="object-contain"
+                className="object-cover"
               />
             </div>
-            <div className="grid grid-cols-3 gap-4 px-2 py-5">
+            <div className="grid grid-cols-3 gap-4 px-6 py-6">
               {hero.kpis.map((kpi) => (
                 <div key={kpi.label}>
                   <p className="font-display text-xl font-bold text-ink sm:text-2xl">
