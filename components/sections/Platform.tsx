@@ -101,7 +101,7 @@ export function Platform() {
             id={`${idBase}-panel-${activeTab}`}
             aria-labelledby={`${idBase}-tab-${activeTab}`}
             key={active.id}
-            className="grid animate-reveal grid-cols-[1fr_1.15fr] items-stretch gap-12 border border-border bg-white p-14"
+            className="grid animate-reveal grid-cols-[1fr_1.1fr] items-center gap-12 border border-border bg-white p-14"
           >
             <div className="flex flex-col gap-6">
               <h3 className="font-display text-[30px] leading-9 font-bold text-ink">
@@ -120,7 +120,7 @@ export function Platform() {
             <ModuleVisual
               id={active.id}
               label={active.visualLabel}
-              className="h-full min-h-[320px]"
+              className="aspect-[533/357]"
             />
           </div>
         </div>

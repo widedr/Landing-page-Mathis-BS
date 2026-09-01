@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { CircleCheckBig, LoaderCircle, ShieldCheck } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -57,17 +56,22 @@ export function FinalCta() {
           </Button>
         </Reveal>
 
-        {/* Formulaire posé dans le dossier orange fourni (form contact.png) */}
+        {/* Dossier orange (contour) calé au plus près de la carte blanche :
+            onglet en haut à gauche + bord supérieur + bord droit. Le contenu
+            vit dans la carte → parfaitement aligné. */}
         <Reveal delay={120} id="cta-form" className="relative w-full scroll-mt-24">
-          <Image
-            src="/form-contact.png"
-            alt=""
-            fill
-            sizes="(min-width: 1024px) 560px, 100vw"
-            className="pointer-events-none select-none object-fill"
-            priority
-          />
-          <div className="relative px-[7%] pt-[7%] pb-[13%]">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 hidden translate-x-[7px] -translate-y-[7px] sm:block"
+          >
+            {/* onglet */}
+            <span className="absolute -top-[22px] left-0 h-[22px] w-[28%] border-[3px] border-b-0 border-btn-primary" />
+            {/* bord supérieur (à droite de l'onglet) */}
+            <span className="absolute top-0 right-0 left-[28%] border-t-[3px] border-btn-primary" />
+            {/* bord droit */}
+            <span className="absolute top-0 right-0 bottom-0 border-r-[3px] border-btn-primary" />
+          </span>
+          <div className="relative border border-border bg-white p-8 shadow-[0_1px_2px_rgba(27,27,35,0.04),0_24px_48px_-24px_rgba(27,27,35,0.15)] sm:p-10">
             {status === "success" ? (
               <div className="flex flex-col items-center gap-4 py-6 text-center">
                 <div className="flex size-14 items-center justify-center rounded-full bg-success-soft text-success">
