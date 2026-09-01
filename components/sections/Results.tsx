@@ -54,7 +54,7 @@ export function Results() {
                   />
 
                   <div className="relative flex items-center gap-3">
-                    <span className="relative z-10 flex size-14 shrink-0 items-center justify-center rounded-full border-2 border-primary bg-white text-primary-ink">
+                    <span className="relative z-10 flex size-14 shrink-0 items-center justify-center rounded-full bg-primary-soft text-primary-ink">
                       <Icon className="size-6" aria-hidden="true" />
                     </span>
                     <span className="font-ui text-xs font-semibold tracking-[0.12em] text-primary-ink uppercase">

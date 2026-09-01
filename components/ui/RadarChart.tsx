@@ -11,8 +11,12 @@ export type RadarAxis = {
 
 const SIZE = 320;
 const CENTER = SIZE / 2;
-const MAX_RADIUS = 108;
+const MAX_RADIUS = 94;
 const RINGS = [0.25, 0.5, 0.75, 1];
+// Marge horizontale pour laisser respirer les libellés longs (ex. AUTOMATISATION)
+// sans qu'ils débordent sur la colonne voisine.
+const PAD_X = 58;
+const PAD_Y = 10;
 
 function pointFor(index: number, total: number, value: number) {
   const angle = -Math.PI / 2 + (index * (2 * Math.PI)) / total;
@@ -51,8 +55,8 @@ export function RadarChart({
   return (
     <div className={cn("relative mx-auto w-full max-w-[360px]", className)}>
       <svg
-        viewBox={`0 0 ${SIZE} ${SIZE}`}
-        className="w-full overflow-visible"
+        viewBox={`${-PAD_X} ${-PAD_Y} ${SIZE + 2 * PAD_X} ${SIZE + 2 * PAD_Y}`}
+        className="w-full"
         role="img"
         aria-label="Comparaison illustrative entre la situation avant Mathis et avec Mathis, sur cinq dimensions."
       >
@@ -132,7 +136,7 @@ export function RadarChart({
         {/* dots orange (avec) + labels cliquables */}
         {axes.map((axis, i) => {
           const dot = pointFor(i, total, axis.after);
-          const outer = pointFor(i, total, 1.18);
+          const outer = pointFor(i, total, 1.16);
           const isActive = activeIndex === i;
 
           let anchor: "start" | "middle" | "end" = "middle";
@@ -164,7 +168,7 @@ export function RadarChart({
                 onMouseEnter={() => onActiveChange(i)}
                 onMouseLeave={() => onActiveChange(null)}
                 className={cn(
-                  "cursor-pointer font-ui text-[10.5px] font-medium tracking-wide uppercase transition-colors",
+                  "cursor-pointer font-ui text-[9.5px] font-medium tracking-wide uppercase transition-colors",
                   isActive ? "fill-primary-ink font-semibold" : "fill-slate",
                 )}
               >

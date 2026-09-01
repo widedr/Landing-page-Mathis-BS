@@ -20,16 +20,29 @@ const moduleScreenshots: Record<string, string> = {
   reporting: "/screenshots/reporting.png",
 };
 
-function ModuleVisual({ id, label }: { id: string; label: string }) {
+function ModuleVisual({
+  id,
+  label,
+  className,
+}: {
+  id: string;
+  label: string;
+  className?: string;
+}) {
   const screenshot = moduleScreenshots[id];
 
   return (
-    <div className="relative aspect-[533/357] w-full overflow-hidden rounded-none border border-border shadow-[0_8px_20px_-8px_rgba(27,27,35,0.15)]">
+    <div
+      className={cn(
+        "relative w-full overflow-hidden rounded-none border border-border shadow-[0_8px_20px_-8px_rgba(27,27,35,0.15)]",
+        className,
+      )}
+    >
       <Image
         src={screenshot}
         alt={label}
         fill
-        sizes="(min-width: 1024px) 478px, 100vw"
+        sizes="(min-width: 1024px) 520px, 100vw"
         className="object-cover object-center"
       />
     </div>
@@ -88,7 +101,7 @@ export function Platform() {
             id={`${idBase}-panel-${activeTab}`}
             aria-labelledby={`${idBase}-tab-${activeTab}`}
             key={active.id}
-            className="grid animate-reveal grid-cols-2 items-center gap-12 border border-border bg-white p-14"
+            className="grid animate-reveal grid-cols-[1fr_1.15fr] items-stretch gap-12 border border-border bg-white p-14"
           >
             <div className="flex flex-col gap-6">
               <h3 className="font-display text-[30px] leading-9 font-bold text-ink">
@@ -104,7 +117,11 @@ export function Platform() {
                 {platform.cta}
               </Button>
             </div>
-            <ModuleVisual id={active.id} label={active.visualLabel} />
+            <ModuleVisual
+              id={active.id}
+              label={active.visualLabel}
+              className="h-full min-h-[320px]"
+            />
           </div>
         </div>
 
@@ -126,7 +143,11 @@ export function Platform() {
                     <CheckItem key={bullet}>{bullet}</CheckItem>
                   ))}
                 </ul>
-                <ModuleVisual id={m.id} label={m.visualLabel} />
+                <ModuleVisual
+                  id={m.id}
+                  label={m.visualLabel}
+                  className="aspect-[533/357]"
+                />
                 <Button href="#cta-final" variant="ghost" arrow className="w-fit px-0">
                   {platform.cta}
                 </Button>
