@@ -59,7 +59,7 @@ export function Hero() {
 
         <Reveal delay={150} className="relative mx-auto w-full max-w-[560px]">
           <div className="relative mb-8 rounded-none bg-white p-4 shadow-[0_30px_70px_-30px_rgba(27,27,35,0.28)] ring-1 ring-ink/5 sm:mb-10">
-            <div className="relative aspect-[533/357] overflow-hidden rounded-none border border-border">
+            <div className="relative aspect-[533/357]">
               <Image
                 src="/screenshots/patrimoine.png"
                 alt="Aperçu du module Patrimoine de Mathis : carte du patrimoine et indicateurs fiscaux"

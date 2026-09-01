@@ -31,13 +31,10 @@ function ModuleVisual({
 }) {
   const screenshot = moduleScreenshots[id];
 
+  // Les captures embarquent déjà leur ombre + coins arrondis sur fond
+  // transparent : on les affiche telles quelles, sans cadre ni ombre ajoutés.
   return (
-    <div
-      className={cn(
-        "relative w-full overflow-hidden rounded-none border border-border shadow-[0_8px_20px_-8px_rgba(27,27,35,0.15)]",
-        className,
-      )}
-    >
+    <div className={cn("relative w-full", className)}>
       <Image
         src={screenshot}
         alt={label}
