@@ -12,8 +12,8 @@ import { problem } from "@/lib/content";
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 // Illustrative maturity levels (0–1) — not real measured values.
-const MATURITY_BEFORE = [0.25, 0.2, 0.15, 0.2, 0.2];
-const MATURITY_AFTER = [0.95, 0.9, 1, 0.9, 0.95];
+const MATURITY_BEFORE = [0.25, 0.2, 0.15, 0.2, 0.2, 0.18, 0.15];
+const MATURITY_AFTER = [0.95, 0.9, 1, 0.9, 0.95, 0.92, 0.9];
 
 type Side = "before" | "after";
 

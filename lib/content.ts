@@ -9,9 +9,9 @@ export const ctaLabel = "Demander une démo";
 
 export const hero = {
   eyebrow: "Plateforme fiscale SaaS",
-  title: "Pilotez toute la fiscalité de votre patrimoine social depuis une seule plateforme.",
+  title: "Pilotez toute la fiscalité de votre patrimoine immobilier depuis une seule plateforme.",
   subtitle:
-    "Mathis centralise vos données fiscales et patrimoniales, automatise vos obligations déclaratives et identifie les dégrèvements et optimisations auxquels votre patrimoine est éligible.",
+    "Mathis centralise vos données fiscales et patrimoniales, automatise vos obligations déclaratives, identifie les dégrèvements auxquels votre patrimoine est éligible, et vous permet de suivre vos réclamations.",
   primaryCta: ctaLabel,
   secondaryCta: "Voir comment ça marche",
   trust: "25 ans d'expertise fiscale dédiée au logement social",
@@ -61,6 +61,16 @@ export const problem = {
       before: "Peu de visibilité consolidée sur le patrimoine fiscal",
       after: "Une fiscalité pilotée, pas subie",
     },
+    {
+      axis: "Comptabilisation",
+      before: "Écritures comptables et refacturations gérées manuellement",
+      after: "Une comptabilisation automatisée, de la taxe à l'écriture",
+    },
+    {
+      axis: "Simulation",
+      before: "Aucune projection fiscale disponible avant décision",
+      after: "Des simulations et projections budgétaires pluriannuelles",
+    },
   ],
   radarCaption:
     "Comparaison qualitative et illustrative — pas une mesure chiffrée réelle.",
@@ -98,7 +108,7 @@ export const solution = {
   ],
   credibility:
     "Cette méthode s'appuie sur 25 ans d'expertise fiscale dédiée au logement social, et sur une connaissance directe des centres fiscaux locaux, partout en France.",
-  badges: ["Conçu pour les exigences du secteur HLM / logement social"],
+  badges: ["Conçu pour les exigences du secteur des bailleurs sociaux / logement social"],
 };
 
 export const platform = {
@@ -193,7 +203,7 @@ export const results = {
       title: "Moins de tâches manuelles",
       detail:
         "La collecte, la saisie et le classement des avis fonciers ne reposent plus sur vos équipes : Mathis les automatise de bout en bout.",
-      highlights: ["Collecte automatisée", "Zéro double saisie"],
+      highlights: ["Collecte automatisée", "Zéro double saisie", "Données cadastrales", "Données ERP"],
     },
     {
       phase: "Premier mois",
@@ -209,7 +219,7 @@ export const results = {
       title: "Une détection plus rapide des opportunités",
       detail:
         "Les dégrèvements potentiels sont identifiés en amont des échéances, au lieu d'être traités au coup par coup et souvent trop tard.",
-      highlights: ["Détection avant échéance", "Suivi demandé / obtenu"],
+      highlights: ["Détection avant échéance", "Suivi demandé / obtenu", "Suivi des réclamations"],
     },
     {
       phase: "En continu",
@@ -226,7 +236,7 @@ export const audience = {
   eyebrow: "Pour Qui",
   title: "Pour qui ?",
   intro:
-    "Une plateforme conçue pour chaque métier du logement social. Que vous pilotiez la stratégie financière, l'optimisation fiscale ou la gestion comptable au quotidien, Mathis s'adapte à vos enjeux opérationnels. Retrouvez en un coup d'œil l'impact direct de la plateforme sur votre périmètre pour transformer vos contraintes métiers en leviers de performance.",
+    "Une plateforme conçue pour chaque métier du logement social. Que vous pilotiez la stratégie financière ou la gestion comptable au quotidien, Mathis s'adapte à vos enjeux opérationnels. Retrouvez en un coup d'œil l'impact direct de la plateforme sur votre périmètre pour transformer vos contraintes métiers en leviers de performance.",
   personas: [
     {
       icon: "user-round-cog",
@@ -278,7 +288,7 @@ export const faq = [
   {
     question: "Combien de temps avant de voir les premiers résultats ?",
     answer:
-      "Un premier rapport d'audit d'anomalies est produit dans le mois suivant le déploiement, avec identification des optimisations et dégrèvements potentiels.",
+      "Un premier rapport d'audit d'anomalies est produit dans le mois suivant le déploiement, avec identification des dégrèvements potentiels.",
   },
   {
     question: "Nos données sont-elles en sécurité ?",

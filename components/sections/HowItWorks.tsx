@@ -18,7 +18,7 @@ const steps = [
   {
     n: "2",
     title: "Connexion des données",
-    description: "Import de votre matrice cadastrale, sans double saisie.",
+    description: "Import de votre matrice cadastrale, avis, données ERP sans double saisie.",
   },
   {
     n: "3",
