@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Outfit, Roboto } from "next/font/google";
 import "./globals.css";
-import { PageLoader } from "@/components/ui/PageLoader";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -84,7 +83,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${outfit.variable} ${roboto.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-paper text-ink">
-        <PageLoader />
         <a
           href="#contenu-principal"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-full focus:bg-ink focus:px-5 focus:py-2.5 focus:text-sm focus:font-medium focus:text-white"
